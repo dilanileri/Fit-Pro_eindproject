@@ -13,4 +13,12 @@ class Exercise extends Model
             ->withPivot('sets', 'reps', 'rest_seconds')
             ->withTimestamps();
     }
+    protected $fillable = [
+        'name',
+        'muscle_group',
+        'difficulty',
+        'description',
+        'image',
+        'video_url',
+    ];
 }
