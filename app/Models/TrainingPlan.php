@@ -13,4 +13,11 @@ class TrainingPlan extends Model
             ->withPivot('week_number', 'day_name')
             ->withTimestamps();
     }
+    protected $fillable = [
+        'title',
+        'description',
+        'goal',
+        'difficulty',
+        'duration_weeks',
+    ];
 }

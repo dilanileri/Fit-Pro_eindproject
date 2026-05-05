@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ExerciseController;
 use App\Http\Controllers\Admin\WorkoutController;
+use App\Http\Controllers\Admin\TrainingPlanController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('exercises', ExerciseController::class);
     Route::resource('workouts', WorkoutController::class);
+    Route::resource('training-plans', TrainingPlanController::class);
 });
 
 require __DIR__ . '/auth.php';
