@@ -1,21 +1,28 @@
+import AdminLayout from '@/Layouts/AdminLayout';
 import { Link } from '@inertiajs/react';
 
 export default function Index({ exercises }) {
     return (
-        <div>
-            <h1>Oefeningen</h1>
+        <AdminLayout>
+            <div className="flex items-center justify-between mb-6">
 
-            <Link href="/admin/exercises/create">
-                Nieuwe oefening
-            </Link>
+                <h1 className=" text-3xl font-bold">Oefeningen</h1>
 
-            <ul>
+                <Link href="/admin/exercises/create"
+                    className="bg-green-500 text-slate-950 px-4 py-2 rounded-lg font-semibold">
+                    Nieuwe oefening
+                </Link>
+            </div>
+
+            <ul className="grid gap-4">
                 {exercises.map((exercise) => (
-                    <li key={exercise.id}>
-                        <h3>{exercise.name}</h3>
-                        <p>Spiergroep: {exercise.muscle_group}</p>
-                        <p>Moeilijkheid: {exercise.difficulty}</p>
-                        <p>{exercise.description}</p>
+                    <li key={exercise.id}
+                        className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+
+                        <h3 className=" mt-5 text-2xl font-bold">{exercise.name}</h3>
+                        <p className="text-slate-400">Spiergroep: {exercise.muscle_group}</p>
+                        <p className="text-slate-400">Moeilijkheid: {exercise.difficulty}</p>
+                        <p className='mt-2'>Beschrijving: {exercise.description}</p>
 
                         {exercise.image && (
                             <img src={exercise.image} alt={exercise.name} width="150" />
@@ -29,12 +36,12 @@ export default function Index({ exercises }) {
 
                         <br />
 
-                        <Link href={`/admin/exercises/${exercise.id}/edit`}>
+                        <Link className="text-blue-400" href={`/admin/exercises/${exercise.id}/edit`}>
                             Bewerken
                         </Link>
                     </li>
                 ))}
             </ul>
-        </div>
+        </AdminLayout>
     );
 }

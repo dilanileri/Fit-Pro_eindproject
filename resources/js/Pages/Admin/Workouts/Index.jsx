@@ -24,7 +24,7 @@ export default function Index({ workouts }) {
                         <h3 className="text-xl font-bold">{workout.title}</h3>
                         <p className="text-slate-400">Moeilijkheid: {workout.difficulty}</p>
                         <p className="text-slate-400">Duur: {workout.duration_minutes} minuten</p>
-                        <p className="mt-2">{workout.description}</p>
+                        <p className="mt-2">Beschrijving: {workout.description}</p>
 
                         <div className="mt-4 flex gap-3">
                             <Link className="text-green-400" href={`/admin/workouts/${workout.id}`}>

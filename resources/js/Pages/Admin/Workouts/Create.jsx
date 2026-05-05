@@ -1,3 +1,4 @@
+import AdminLayout from '@/Layouts/AdminLayout';
 import { useForm } from '@inertiajs/react';
 
 export default function Create({ exercises }) {
@@ -15,11 +16,12 @@ export default function Create({ exercises }) {
     }
 
     return (
-        <div>
+        <AdminLayout>
             <h1>Nieuwe workout</h1>
 
             <form onSubmit={submit}>
                 <input
+                    className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
                     type="text"
                     placeholder="Titel"
                     value={data.title}
@@ -28,12 +30,14 @@ export default function Create({ exercises }) {
                 {errors.title && <div>{errors.title}</div>}
 
                 <textarea
+                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     placeholder="Beschrijving"
                     value={data.description}
                     onChange={(e) => setData('description', e.target.value)}
                 />
 
                 <input
+                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     type="text"
                     placeholder="Moeilijkheid"
                     value={data.difficulty}
@@ -42,6 +46,7 @@ export default function Create({ exercises }) {
                 {errors.difficulty && <div>{errors.difficulty}</div>}
 
                 <input
+                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     type="number"
                     placeholder="Duur in minuten"
                     value={data.duration_minutes}
@@ -53,6 +58,7 @@ export default function Create({ exercises }) {
                 {exercises.map((exercise) => (
                     <label key={exercise.id} style={{ display: 'block' }}>
                         <input
+                            className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
                             type="checkbox"
                             value={exercise.id}
                             checked={data.exercises.includes(exercise.id)}
@@ -78,6 +84,6 @@ export default function Create({ exercises }) {
                     Opslaan
                 </button>
             </form>
-        </div>
+        </AdminLayout>
     );
 }

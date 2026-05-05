@@ -1,3 +1,4 @@
+import AdminLayout from '@/Layouts/AdminLayout';
 import { useForm } from '@inertiajs/react';
 
 export default function Edit({ exercise }) {
@@ -20,21 +21,22 @@ export default function Edit({ exercise }) {
     }
 
     return (
-        <div>
-            <h1>Oefening bewerken</h1>
+        <AdminLayout>
+            <h1 className="text-3xl font-bold mb-6">Oefening bewerken</h1>
 
-            <form onSubmit={submit}>
+            <form className="max-w-xl space-y-4" onSubmit={submit}>
                 <input
+                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     value={data.name}
                     onChange={(e) => setData('name', e.target.value)}
                 />
 
-                <button>Opslaan</button>
+                <button className='text-green-400'>Opslaan</button>
             </form>
 
-            <button onClick={remove}>
+            <button className='text-red-400' onClick={remove}>
                 Verwijderen
             </button>
-        </div>
+        </AdminLayout>
     );
 }

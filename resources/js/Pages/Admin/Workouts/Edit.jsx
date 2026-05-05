@@ -26,6 +26,7 @@ export default function Edit({ workout, exercises }) {
             <h1 className="text-3xl font-bold mb-6">Workout bewerken</h1>
 
             <form className="max-w-xl space-y-4" onSubmit={submit}>
+                <h3>Titel:</h3>
                 <input
                     className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     type="text"
@@ -33,13 +34,14 @@ export default function Edit({ workout, exercises }) {
                     onChange={(e) => setData('title', e.target.value)}
                 />
                 {errors.title && <div>{errors.title}</div>}
-
+                <h3>Beschrijving:</h3>
                 <textarea
                     className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     value={data.description}
                     onChange={(e) => setData('description', e.target.value)}
                 />
 
+                <h3>Moeilijkheidsgraad:</h3>
                 <input
                     className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     type="text"
@@ -48,6 +50,7 @@ export default function Edit({ workout, exercises }) {
                 />
                 {errors.difficulty && <div>{errors.difficulty}</div>}
 
+                <h3>trainingsduur:</h3>
                 <input
                     className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
                     type="number"
@@ -60,7 +63,7 @@ export default function Edit({ workout, exercises }) {
                 {exercises.map((exercise) => (
                     <label key={exercise.id} style={{ display: 'block' }}>
                         <input
-                            className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
+                            className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
                             type="checkbox"
                             value={exercise.id}
                             checked={data.exercises.includes(exercise.id)}
@@ -83,12 +86,12 @@ export default function Edit({ workout, exercises }) {
                 ))}
 
 
-                <button disabled={processing}>
+                <button className='text-green-400' disabled={processing}>
                     Opslaan
                 </button>
             </form>
 
-            <button onClick={remove}>
+            <button className='text-red-400' onClick={remove}>
                 Verwijderen
             </button>
         </AdminLayout >
