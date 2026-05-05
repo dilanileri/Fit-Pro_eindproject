@@ -1,11 +1,12 @@
 import { useForm } from '@inertiajs/react';
 
-export default function Create() {
+export default function Create({ exercises }) {
     const { data, setData, post, processing, errors } = useForm({
         title: '',
         description: '',
         difficulty: '',
         duration_minutes: '',
+        exercises: [],
     });
 
     function submit(e) {
@@ -46,6 +47,32 @@ export default function Create() {
                     value={data.duration_minutes}
                     onChange={(e) => setData('duration_minutes', e.target.value)}
                 />
+
+                <h2>Oefeningen koppelen</h2>
+
+                {exercises.map((exercise) => (
+                    <label key={exercise.id} style={{ display: 'block' }}>
+                        <input
+                            type="checkbox"
+                            value={exercise.id}
+                            checked={data.exercises.includes(exercise.id)}
+                            onChange={(e) => {
+                                const id = Number(e.target.value);
+
+                                if (e.target.checked) {
+                                    setData('exercises', [...data.exercises, id]);
+                                } else {
+                                    setData(
+                                        'exercises',
+                                        data.exercises.filter((exerciseId) => exerciseId !== id)
+                                    );
+                                }
+                            }}
+                        />
+
+                        {exercise.name} — {exercise.muscle_group}
+                    </label>
+                ))}
 
                 <button disabled={processing}>
                     Opslaan

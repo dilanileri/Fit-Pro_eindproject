@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Exercise;
 use App\Models\Workout;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,7 +19,9 @@ class WorkoutController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/Workouts/Create');
+        return Inertia::render('Admin/Workouts/Create', [
+            'exercises' => Exercise::orderBy('name')->get(),
+        ]);
     }
 
     public function store(Request $request)
@@ -28,9 +31,12 @@ class WorkoutController extends Controller
             'description' => 'nullable|string',
             'difficulty' => 'required|string|max:255',
             'duration_minutes' => 'nullable|integer',
+            'exercises' => "array",
+            'exercises.*' => 'exists:exercises,id',
         ]);
 
-        Workout::create($validated);
+        $workout = Workout::create($validated);
+        $workout->exercises()->sync($request->input('exercises', []));
 
         return redirect()->route('admin.workouts.index');
     }
@@ -38,7 +44,15 @@ class WorkoutController extends Controller
     public function edit(Workout $workout)
     {
         return Inertia::render('Admin/Workouts/Edit', [
-            'workout' => $workout,
+            'workout' => $workout->load('exercises'),
+            'exercises' => Exercise::orderBy('name')->get()
+        ]);
+    }
+
+    public function show(Workout $workout)
+    {
+        return Inertia::render('Admin/Workouts/Show', [
+            'workout' => $workout->load('exercises'),
         ]);
     }
 
@@ -49,9 +63,12 @@ class WorkoutController extends Controller
             'description' => 'nullable|string',
             'difficulty' => 'required|string|max:255',
             'duration_minutes' => 'nullable|integer',
+            'exercises' => "array",
+            'exercises.*' => 'exists:exercises,id',
         ]);
 
         $workout->update($validated);
+        $workout->exercises()->sync($request->input('exercises', []));
 
         return redirect()->route('admin.workouts.index');
     }
