@@ -21,4 +21,11 @@ class Workout extends Model
             ->withPivot('sets', 'reps', 'rest_seconds')
             ->withTimestamps();
     }
+
+    protected $fillable = [
+        'title',
+        'description',
+        'difficulty',
+        'duration_minutes',
+    ];
 }
