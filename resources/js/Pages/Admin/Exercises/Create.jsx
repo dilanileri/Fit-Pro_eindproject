@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { useForm } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 
 export default function Create() {
     const { data, setData, post, processing, errors } = useForm({
@@ -19,6 +19,13 @@ export default function Create() {
     return (
         <AdminLayout>
             <h1 className=" text-3xl font-bold">Nieuwe oefening</h1>
+
+            <Link
+                href="/admin/exercises"
+                className="inline-block mb-6 text-sm text-slate-400 hover:text-green-400"
+            >
+                ← Terug naar oefeningen
+            </Link>
 
             <form onSubmit={submit}>
                 <input

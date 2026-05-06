@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { useForm } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 
 export default function Edit({ workout, exercises }) {
     const { data, setData, put, delete: destroy, processing, errors } = useForm({
@@ -24,6 +24,13 @@ export default function Edit({ workout, exercises }) {
     return (
         <AdminLayout>
             <h1 className="text-3xl font-bold mb-6">Workout bewerken</h1>
+
+            <Link
+                href="/admin/workouts"
+                className="inline-block mb-6 text-sm text-slate-400 hover:text-green-400"
+            >
+                ← Terug naar workouts
+            </Link>
 
             <form className="max-w-xl space-y-4" onSubmit={submit}>
                 <h3>Titel:</h3>

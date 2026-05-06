@@ -28,6 +28,16 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('Admin/Dashboard', [
+            'stats' => [
+                'exercises' => \App\Models\Exercise::count(),
+                'workouts' => \App\Models\Workout::count(),
+                'trainingPlans' => \App\Models\TrainingPlan::count(),
+            ],
+        ]);
+    })->name('dashboard');
+
     Route::resource('exercises', ExerciseController::class);
     Route::resource('workouts', WorkoutController::class);
     Route::resource('training-plans', TrainingPlanController::class);

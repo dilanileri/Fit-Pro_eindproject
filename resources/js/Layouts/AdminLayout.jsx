@@ -1,6 +1,7 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function AdminLayout({ children }) {
+    const { url } = usePage();
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100">
             <div className="flex">
@@ -10,14 +11,37 @@ export default function AdminLayout({ children }) {
                     </h1>
 
                     <nav className="space-y-3">
-                        <Link className="block hover:text-green-400" href="/admin">
+                        <Link className={`block rounded px-3 py-2 ${url === '/admin'
+                            ? 'bg-slate-800 text-green-400'
+                            : 'hover:text-green-400'
+                            }`}
+                            href="/admin"
+                        >
                             Dashboard
                         </Link>
-                        <Link className="block hover:text-green-400" href="/admin/exercises">
+                        <Link className={`block rounded px-3 py-2 ${url.startsWith('/admin/exercises')
+                            ? 'bg-slate-800 text-green-400'
+                            : 'hover:text-green-400'
+                            }`}
+                            href="/admin/exercises"
+                        >
                             Oefeningen
                         </Link>
-                        <Link className="block hover:text-green-400" href="/admin/workouts">
+                        <Link className={`block rounded px-3 py-2 ${url.startsWith('/admin/workouts')
+                            ? 'bg-slate-800 text-green-400'
+                            : 'hover:text-green-400'
+                            }`}
+                            href="/admin/workouts"
+                        >
                             Workouts
+                        </Link>
+                        <Link className={`block rounded px-3 py-2 ${url.startsWith('/admin/training-plans')
+                            ? 'bg-slate-800 text-green-400'
+                            : 'hover:text-green-400'
+                            }`}
+                            href="/admin/training-plans"
+                        >
+                            Trainingsschema's
                         </Link>
                     </nav>
                 </aside>
@@ -26,6 +50,6 @@ export default function AdminLayout({ children }) {
                     {children}
                 </main>
             </div>
-        </div>
+        </div >
     );
 }
