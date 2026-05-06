@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ExerciseController;
-use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\TrainingPlanController;
+use App\Http\Controllers\Admin\WorkoutController;
+use App\Http\Controllers\ProfileController;
+use App\Models\TrainingPlan;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -38,9 +39,30 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         ]);
     })->name('dashboard');
 
+
     Route::resource('exercises', ExerciseController::class);
     Route::resource('workouts', WorkoutController::class);
     Route::resource('training-plans', TrainingPlanController::class);
 });
+
+Route::middleware(['auth'])
+    ->prefix('member')
+    ->name('member.')
+    ->group(function () {
+        Route::get('/training-plans', function () {
+            return Inertia::render('Member/TrainingPlans/Index', [
+                'trainingPlans' => TrainingPlan::latest()->get(),
+            ]);
+        })->name('training-plans.index');
+
+
+        Route::get('/training-plans/{trainingPlan}', function (TrainingPlan $trainingPlan) {
+            $trainingPlan->load('workouts.exercises');
+
+            return Inertia::render('Member/TrainingPlans/Show', [
+                'trainingPlan' => $trainingPlan,
+            ]);
+        })->name('training-plans.show');
+    });
 
 require __DIR__ . '/auth.php';
