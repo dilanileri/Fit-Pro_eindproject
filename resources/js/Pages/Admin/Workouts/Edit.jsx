@@ -65,33 +65,51 @@ export default function Edit({ workout, exercises }) {
                     onChange={(e) => setData('duration_minutes', e.target.value)}
                 />
 
-                <h2 className="text-2xl font-bold mb-6">Oefeningen koppelen</h2>
+                <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+                    <h2 className="text-2xl font-bold mb-6">Oefeningen koppelen</h2>
 
-                {exercises.map((exercise) => (
-                    <label key={exercise.id} style={{ display: 'block' }}>
-                        <input
-                            className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
-                            type="checkbox"
-                            value={exercise.id}
-                            checked={data.exercises.includes(exercise.id)}
-                            onChange={(e) => {
-                                const id = Number(e.target.value);
+                    {exercises.length === 0 ? (
+                        <div className="rounded-lg bg-slate-900 border border-slate-800 p-4">
+                            <p className="text-slate-400 mb-3">
+                                Er zijn nog geen oefeningen beschikbaar.
+                            </p>
 
-                                if (e.target.checked) {
-                                    setData('exercises', [...data.exercises, id]);
-                                } else {
-                                    setData(
-                                        'exercises',
-                                        data.exercises.filter((exerciseId) => exerciseId !== id)
-                                    );
-                                }
-                            }}
-                        />
+                            <Link
+                                href="/admin/exercises/create"
+                                className="text-green-400 hover:text-green-300"
+                            >
+                                Maak eerst een oefening aan
+                            </Link>
+                        </div>
+                    ) : (
+                        exercises.map((exercise) => (
+                            <label key={exercise.id} style={{ display: 'block' }}>
+                                <input
+                                    className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
+                                    type="checkbox"
+                                    value={exercise.id}
+                                    checked={data.exercises.includes(exercise.id)}
+                                    onChange={(e) => {
+                                        const id = Number(e.target.value);
 
-                        {exercise.name} — {exercise.muscle_group}
-                    </label>
-                ))}
+                                        if (e.target.checked) {
+                                            setData('exercises', [...data.exercises, id]);
+                                        } else {
+                                            setData(
+                                                'exercises',
+                                                data.exercises.filter(
+                                                    (exerciseId) => exerciseId !== id
+                                                )
+                                            );
+                                        }
+                                    }}
+                                />
 
+                                {exercise.name} — {exercise.muscle_group}
+                            </label>
+                        ))
+                    )}
+                </div>
 
                 <button className='text-green-400' disabled={processing}>
                     Opslaan

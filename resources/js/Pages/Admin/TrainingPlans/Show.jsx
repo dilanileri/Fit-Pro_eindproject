@@ -35,6 +35,12 @@ export default function Show({ plan }) {
                             <p className="text-slate-400">
                                 Duur: {workout.duration_minutes} minuten
                             </p>
+
+                            {workout.pivot && (
+                                <p className="mt-2 text-sm text-green-400">
+                                    Week {workout.pivot.week_number} — {workout.pivot.day_name}
+                                </p>
+                            )}
                         </div>
                     ))}
                 </div>

@@ -85,20 +85,45 @@ export default function Create({ workouts }) {
 
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
                     <h2 className="text-xl font-bold mb-4">Workouts koppelen</h2>
+                    {workouts.length === 0 ? (
+                        <div>
+                            <p className="text-slate-400 mb-3">
+                                Er zijn nog geen workouts beschikbaar.
+                            </p>
 
-                    {workouts.map((workout) => (
-                        <label key={workout.id} className="block mb-2">
-                            <input
-                                type="checkbox"
-                                className="mr-2"
-                                checked={data.workouts.includes(workout.id)}
-                                onChange={(e) =>
-                                    toggleWorkout(workout.id, e.target.checked)
-                                }
-                            />
-                            {workout.title} — {workout.difficulty}
-                        </label>
-                    ))}
+                            <Link
+                                href="/admin/workouts/create"
+                                className="text-green-400 hover:text-green-300"
+                            >
+                                Maak eerst een workout aan
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="space-y-3">
+                            {workouts.map((workout) => (
+                                <label
+                                    key={workout.id}
+                                    className="flex items-center rounded-lg bg-slate-950 border border-slate-800 p-3 cursor-pointer"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
+                                        checked={data.workouts.includes(workout.id)}
+                                        onChange={(e) =>
+                                            toggleWorkout(workout.id, e.target.checked)
+                                        }
+                                    />
+
+                                    <span>
+                                        {workout.title}
+                                        <span className="text-slate-500">
+                                            {' '}— {workout.difficulty}
+                                        </span>
+                                    </span>
+                                </label>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <button
