@@ -8,6 +8,7 @@ export default function Index({ trainingPlans }) {
                 Trainingsschema's
             </h1>
 
+
             <div className="grid gap-6 md:grid-cols-2">
                 {trainingPlans.map((plan) => (
                     <Link

@@ -55,6 +55,27 @@ Route::middleware(['auth'])
             ]);
         })->name('training-plans.index');
 
+        Route::get('/', function () {
+            return Inertia::render('Member/Dashboard');
+        })->name('dashboard');
+
+        Route::get('/profile', function () {
+            return Inertia::render('Member/Profile');
+        })->name('profile');
+
+        Route::patch('/profile', function (\Illuminate\Http\Request $request) {
+            $validated = $request->validate([
+                'age' => ['nullable', 'integer', 'min:1', 'max:100'],
+                'height' => ['nullable', 'integer', 'min:100', 'max:230'],
+                'weight' => ['nullable', 'numeric', 'min:35', 'max:300'],
+                'address' => ['nullable', 'string', 'min:3', 'max:255'],
+                'city' => ['nullable', 'string', 'min:3', 'max:255'],
+            ]);
+
+            $request->user()->update($validated);
+
+            return redirect()->back();
+        })->name('profile.update');
 
         Route::get('/training-plans/{trainingPlan}', function (TrainingPlan $trainingPlan) {
             $trainingPlan->load('workouts.exercises');

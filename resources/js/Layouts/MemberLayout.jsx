@@ -13,6 +13,17 @@ export default function MemberLayout({ children }) {
 
                     <nav className="flex items-center gap-6">
                         <Link
+                            href="/member"
+                            className={
+                                url === '/member'
+                                    ? 'text-green-400'
+                                    : 'text-slate-300 hover:text-green-400'
+                            }
+                        >
+                            Dashboard
+                        </Link>
+
+                        <Link
                             href="/member/training-plans"
                             className={
                                 url.startsWith('/member/training-plans')
@@ -21,6 +32,17 @@ export default function MemberLayout({ children }) {
                             }
                         >
                             Trainingsschema's
+                        </Link>
+
+                        <Link
+                            href="/member/profile"
+                            className={
+                                url === '/member/profile'
+                                    ? 'text-green-400'
+                                    : 'text-slate-300 hover:text-green-400'
+                            }
+                        >
+                            Profiel
                         </Link>
 
                         <span className="text-sm text-slate-500">
