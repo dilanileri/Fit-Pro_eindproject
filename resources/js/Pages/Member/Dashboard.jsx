@@ -2,7 +2,7 @@ import MemberLayout from '@/Layouts/MemberLayout';
 import { usePage, Link } from '@inertiajs/react';
 import BmiCalculator from '@/Components/BmiCalculator';
 
-export default function Dashboard() {
+export default function Dashboard({ favoritePlans = [] }) {
     const { auth } = usePage().props;
     const height = auth.user.height;
     const weight = auth.user.weight;
@@ -49,25 +49,32 @@ export default function Dashboard() {
                     <BmiCalculator user={auth.user} />
                 </div>
 
-                <div className="rounded-xl bg-slate-900 border border-slate-800 p-6">
-                    <h2 className="text-lg font-semibold mb-3">
-                        Favoriete workouts
-                    </h2>
+                {favoritePlans.length === 0 ? (
+                    <div className="text-center rounded-xl bg-slate-900 border border-slate-800 p-6">
+                        Nog geen favoriete schema's
+                    </div>
 
-                    <p className="text-slate-400">
-                        Nog geen favorieten toegevoegd.
-                    </p>
-                </div>
+                ) : (
+                    <div className="text-center rounded-xl bg-slate-900 border border-slate-800 p-6">
 
-                <div className="rounded-xl bg-slate-900 border border-slate-800 p-6">
-                    <h2 className="text-lg font-semibold mb-3">
-                        Favoriete oefeningen
-                    </h2>
+                        <h2 className="text-lg font-semibold mb-3">Favoriete schema's</h2>
+                        {favoritePlans.map((plan) => (
+                            <Link
+                                key={plan.id}
+                                href={`/member/training-plans/${plan.id}`}
+                                className="block rounded-lg bg-slate-950 border border-slate-800 p-3 hover:border-green-400"
+                            >
+                                <p className="font-semibold">
+                                    {plan.title}
+                                </p>
 
-                    <p className="text-slate-400">
-                        Nog geen favorieten toegevoegd.
-                    </p>
-                </div>
+                                <p className="text-sm text-slate-400">
+                                    {plan.goal}
+                                </p>
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <div className="mt-8 rounded-xl bg-slate-900 border border-slate-800 p-6">

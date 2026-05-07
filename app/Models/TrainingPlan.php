@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Workout;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class TrainingPlan extends Model
@@ -20,4 +21,11 @@ class TrainingPlan extends Model
         'difficulty',
         'duration_weeks',
     ];
+    public function favoritedByUsers()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'favorite_training_plans'
+        )->withTimestamps();
+    }
 }

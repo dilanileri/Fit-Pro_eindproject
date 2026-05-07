@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\TrainingPlan;
 
 #[Fillable([
     'name',
@@ -28,6 +29,13 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public function favoriteTrainingPlans()
+    {
+        return $this->belongsToMany(
+            TrainingPlan::class,
+            'favorite_training_plans'
+        )->withTimestamps();
+    }
     /**
      * Get the attributes that should be cast.
      *

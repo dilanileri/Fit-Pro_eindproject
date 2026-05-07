@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\Admin\ExerciseController;
 use App\Http\Controllers\Admin\TrainingPlanController;
+use App\Http\Controllers\Member\TrainingPlanController as MemberTrainingPlanController;
 use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Member\WorkoutController as MemberWorkoutController;
+use App\Http\Controllers\Member\ExerciseController as MemberExerciseController;
 use App\Models\TrainingPlan;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -56,7 +60,19 @@ Route::middleware(['auth'])
         })->name('training-plans.index');
 
         Route::get('/', function () {
-            return Inertia::render('Member/Dashboard');
+
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+
+            $favoritePlans = $user
+                ->favoriteTrainingPlans()
+                ->latest()
+                ->take(3)
+                ->get();
+
+            return Inertia::render('Member/Dashboard', [
+                'favoritePlans' => $favoritePlans,
+            ]);
         })->name('dashboard');
 
         Route::get('/profile', function () {
@@ -77,13 +93,21 @@ Route::middleware(['auth'])
             return redirect()->back();
         })->name('profile.update');
 
-        Route::get('/training-plans/{trainingPlan}', function (TrainingPlan $trainingPlan) {
-            $trainingPlan->load('workouts.exercises');
 
-            return Inertia::render('Member/TrainingPlans/Show', [
-                'trainingPlan' => $trainingPlan,
-            ]);
-        })->name('training-plans.show');
+        Route::post('/training-plans/{trainingPlan}/favorite', [MemberTrainingPlanController::class, 'favorite'])
+            ->name('training-plans.favorite');
+
+        Route::delete('/training-plans/{trainingPlan}/favorite', [MemberTrainingPlanController::class, 'unfavorite'])
+            ->name('training-plans.unfavorite');
+
+        Route::get('/training-plans/{trainingPlan}', [MemberTrainingPlanController::class, 'show'])
+            ->name('training-plans.show');
+
+        Route::get('/workouts/{workout}', [MemberWorkoutController::class, 'show'])
+            ->name('workouts.show');
+
+        Route::get('/exercises/{exercise}', [MemberExerciseController::class, 'show'])
+            ->name('exercises.show');
     });
 
 require __DIR__ . '/auth.php';

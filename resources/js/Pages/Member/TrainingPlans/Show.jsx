@@ -1,7 +1,7 @@
 import MemberLayout from '@/Layouts/MemberLayout';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
-export default function Show({ trainingPlan }) {
+export default function Show({ trainingPlan, isFavorite }) {
     return (
         <MemberLayout>
             <Link
@@ -15,6 +15,26 @@ export default function Show({ trainingPlan }) {
                 <h1 className="text-3xl font-bold mb-4">
                     {trainingPlan.title}
                 </h1>
+
+                {isFavorite ? (
+                    <button
+                        onClick={() =>
+                            router.delete(`/member/training-plans/${trainingPlan.id}/favorite`)
+                        }
+                        className="mb-4 rounded-lg bg-red-500 px-4 py-2 text-white font-semibold"
+                    >
+                        Verwijder favoriet
+                    </button>
+                ) : (
+                    <button
+                        onClick={() =>
+                            router.post(`/member/training-plans/${trainingPlan.id}/favorite`)
+                        }
+                        className="mb-4 rounded-lg bg-green-500 px-4 py-2 text-slate-950 font-semibold"
+                    >
+                        Toevoegen favoriet
+                    </button>
+                )}
 
                 <div className="space-y-2 text-slate-300">
                     <p>
@@ -48,13 +68,13 @@ export default function Show({ trainingPlan }) {
                 </p>
             ) : (
                 <div className="space-y-6">
-                    {trainingPlan.workouts.map((workout) => (
+                    {trainingPlan.workouts.map((workout, index) => (
                         <div
                             key={workout.id}
                             className="rounded-xl bg-slate-900 border border-slate-800 p-6"
                         >
                             <h3 className="text-xl font-bold mb-2">
-                                {workout.title}
+                                {`Dag ${index + 1}`} - {workout.title}
                             </h3>
 
                             <p className="text-slate-400 mb-1">
@@ -65,32 +85,12 @@ export default function Show({ trainingPlan }) {
                                 Duur: {workout.duration_minutes} minuten
                             </p>
 
-                            <h4 className="font-semibold mb-3 text-green-400">
-                                Oefeningen
-                            </h4>
-
-                            {workout.exercises.length === 0 ? (
-                                <p className="text-slate-500">
-                                    Geen oefeningen gekoppeld.
-                                </p>
-                            ) : (
-                                <div className="space-y-2">
-                                    {workout.exercises.map((exercise) => (
-                                        <div
-                                            key={exercise.id}
-                                            className="rounded-lg bg-slate-950 border border-slate-800 p-3"
-                                        >
-                                            <p className="font-semibold">
-                                                {exercise.name}
-                                            </p>
-
-                                            <p className="text-sm text-slate-400">
-                                                {exercise.muscle_group}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                            <Link
+                                href={`/member/workouts/${workout.id}`}
+                                className="inline-block mt-4 rounded-lg bg-green-500 px-4 py-2 text-slate-950 font-semibold"
+                            >
+                                Bekijk workout
+                            </Link>
                         </div>
                     ))}
                 </div>
