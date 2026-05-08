@@ -22,8 +22,21 @@ Route::get('/', function () {
     ]);
 });
 
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+
+
+    /** @var \App\Models\User $user */
+    $user = Auth::user();
+
+    if ($user->role === 'admin') {
+        return redirect('/admin');
+    }
+
+    return redirect('/member');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

@@ -45,6 +45,15 @@ export default function MemberLayout({ children }) {
                             Profiel
                         </Link>
 
+                        <Link
+                            href="/logout"
+                            method="post"
+                            as="button"
+                            className="text-sm text-red-400 hover:text-red-300"
+                        >
+                            Uitloggen
+                        </Link>
+
                         <span className="text-sm text-slate-500">
                             {auth.user.name}
                         </span>

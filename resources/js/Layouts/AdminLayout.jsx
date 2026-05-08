@@ -43,6 +43,15 @@ export default function AdminLayout({ children }) {
                         >
                             Trainingsschema's
                         </Link>
+
+                        <Link
+                            href="/logout"
+                            method="post"
+                            as="button"
+                            className="text-red-400 hover:text-red-300"
+                        >
+                            Uitloggen
+                        </Link>
                     </nav>
                 </aside>
 

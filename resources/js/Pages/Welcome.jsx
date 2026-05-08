@@ -50,7 +50,7 @@ export default function Welcome({ auth }) {
                         </h2>
 
                         <p className="mx-auto max-w-2xl text-slate-400 text-lg mb-8">
-                            Bekijk trainingsschema’s, volg workouts en ontdek oefeningen
+                            Bekijk trainingsschema's, volg workouts en ontdek oefeningen
                             die passen bij jouw fitnessdoelen.
                         </p>
 
