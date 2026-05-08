@@ -58,8 +58,11 @@ export default function Login({ status, canResetPassword }) {
                         onChange={(e) => setData('email', e.target.value)}
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
+                    {errors.email && (
+                        <p className="mt-2 text-sm text-red-400">
+                            Incorrecte inloggegevens
+                        </p>
+                    )}                </div>
 
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Wachtwoord" />
@@ -73,8 +76,11 @@ export default function Login({ status, canResetPassword }) {
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
+                    {errors.password && (
+                        <p className="mt-2 text-sm text-red-400">
+                            Incorrecte inloggegevens
+                        </p>
+                    )}                </div>
 
                 <div className="mt-4 block">
                     <label className="flex items-center">
