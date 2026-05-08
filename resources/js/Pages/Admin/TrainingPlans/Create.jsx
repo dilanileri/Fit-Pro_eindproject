@@ -12,14 +12,33 @@ export default function Create({ workouts }) {
     });
 
     function toggleWorkout(id, checked) {
+        const workoutId = Number(id);
+
         if (checked) {
-            setData('workouts', [...data.workouts, id]);
+            setData('workouts', [
+                ...data.workouts,
+                {
+                    id: workoutId,
+                    day_name: '',
+                },
+            ]);
         } else {
             setData(
                 'workouts',
-                data.workouts.filter((workoutId) => workoutId !== id)
+                data.workouts.filter((workout) => Number(workout.id) !== workoutId)
             );
         }
+    }
+
+    function updateWorkoutField(id, field, value) {
+        setData(
+            'workouts',
+            data.workouts.map((workout) =>
+                workout.id === id
+                    ? { ...workout, [field]: value }
+                    : workout
+            )
+        );
     }
 
     function submit(e) {
@@ -100,28 +119,54 @@ export default function Create({ workouts }) {
                         </div>
                     ) : (
                         <div className="space-y-3">
-                            {workouts.map((workout) => (
-                                <label
-                                    key={workout.id}
-                                    className="flex items-center rounded-lg bg-slate-950 border border-slate-800 p-3 cursor-pointer"
-                                >
-                                    <input
-                                        type="checkbox"
-                                        className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
-                                        checked={data.workouts.includes(workout.id)}
-                                        onChange={(e) =>
-                                            toggleWorkout(workout.id, e.target.checked)
-                                        }
-                                    />
+                            {workouts.map((workout) => {
+                                const selectedWorkout = data.workouts.find(
+                                    (item) => Number(item.id) === Number(workout.id)
+                                );
 
-                                    <span>
-                                        {workout.title}
-                                        <span className="text-slate-500">
-                                            {' '}— {workout.difficulty}
-                                        </span>
-                                    </span>
-                                </label>
-                            ))}
+                                return (
+                                    <div
+                                        key={workout.id}
+                                        className="rounded-lg bg-slate-950 border border-slate-800 p-3"
+                                    >
+                                        <label className="flex items-center cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                className="mr-5"
+                                                checked={!!selectedWorkout}
+                                                onChange={(e) =>
+                                                    toggleWorkout(workout.id, e.target.checked)
+                                                }
+                                            />
+
+                                            <span>
+                                                {workout.title}
+                                                <span className="text-slate-500">
+                                                    {' '}— {workout.difficulty}
+                                                </span>
+                                            </span>
+                                        </label>
+
+                                        {selectedWorkout && (
+                                            <div className="mt-4">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Welke dag van het schema? / Dag 1"
+                                                    value={selectedWorkout.day_name}
+                                                    onChange={(e) =>
+                                                        updateWorkoutField(
+                                                            workout.id,
+                                                            'day_name',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     )}
                 </div>
@@ -133,6 +178,6 @@ export default function Create({ workouts }) {
                     Opslaan
                 </button>
             </form>
-        </AdminLayout>
+        </AdminLayout >
     );
 }
