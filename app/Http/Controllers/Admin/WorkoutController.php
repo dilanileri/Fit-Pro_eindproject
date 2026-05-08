@@ -82,12 +82,30 @@ class WorkoutController extends Controller
             'description' => 'nullable|string',
             'difficulty' => 'required|string|max:255',
             'duration_minutes' => 'nullable|integer',
-            'exercises' => "array",
-            'exercises.*' => 'exists:exercises,id',
+            'exercises' => 'array',
+            'exercises.*.id' => 'required|exists:exercises,id',
+            'exercises.*.sets' => 'nullable|integer|min:1',
+            'exercises.*.reps' => 'nullable|integer|min:1',
+            'exercises.*.rest_seconds' => 'nullable|integer|min:0',
+        ]);
+        $workout->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'difficulty' => $validated['difficulty'],
+            'duration_minutes' => $validated['duration_minutes'] ?? null,
         ]);
 
-        $workout->update($validated);
-        $workout->exercises()->sync($request->input('exercises', []));
+        $syncData = [];
+
+        foreach ($validated['exercises'] ?? [] as $exercise) {
+            $syncData[$exercise['id']] = [
+                'sets' => $exercise['sets'] ?? null,
+                'reps' => $exercise['reps'] ?? null,
+                'rest_seconds' => $exercise['rest_seconds'] ?? null,
+            ];
+        }
+
+        $workout->exercises()->sync($syncData);
 
         return redirect()->route('admin.workouts.index');
     }

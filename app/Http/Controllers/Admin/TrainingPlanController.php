@@ -33,12 +33,26 @@ class TrainingPlanController extends Controller
             'difficulty' => 'required|string|max:255',
             'duration_weeks' => 'nullable|integer',
             'workouts' => 'array',
-            'workouts.*' => 'exists:workouts,id',
+            'workouts.*.id' => 'required|exists:workouts,id',
+            'workouts.*.day_name' => 'nullable|string|max:50',
+        ]);
+        $plan = TrainingPlan::create([
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'goal' => $validated['goal'],
+            'difficulty' => $validated['difficulty'],
+            'duration_weeks' => $validated['duration_weeks'] ?? null,
         ]);
 
-        $plan = TrainingPlan::create($validated);
+        $syncData = [];
 
-        $plan->workouts()->sync($request->input('workouts', []));
+        foreach ($validated['workouts'] ?? [] as $workout) {
+            $syncData[$workout['id']] = [
+                'day_name' => $workout['day_name'] ?? null,
+            ];
+        }
+
+        $plan->workouts()->sync($syncData);
 
         return redirect()->route('admin.training-plans.index');
     }
@@ -66,13 +80,29 @@ class TrainingPlanController extends Controller
             'goal' => 'required|string|max:255',
             'difficulty' => 'required|string|max:255',
             'duration_weeks' => 'nullable|integer',
+
             'workouts' => 'array',
-            'workouts.*' => 'exists:workouts,id',
+            'workouts.*.id' => 'required|exists:workouts,id',
+            'workouts.*.day_name' => 'nullable|string|max:50',
         ]);
 
-        $trainingPlan->update($validated);
+        $trainingPlan->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'goal' => $validated['goal'],
+            'difficulty' => $validated['difficulty'],
+            'duration_weeks' => $validated['duration_weeks'] ?? null,
+        ]);
 
-        $trainingPlan->workouts()->sync($request->input('workouts', []));
+        $syncData = [];
+
+        foreach ($validated['workouts'] ?? [] as $workout) {
+            $syncData[$workout['id']] = [
+                'day_name' => $workout['day_name'] ?? null,
+            ];
+        }
+
+        $trainingPlan->workouts()->sync($syncData);
 
         return redirect()->route('admin.training-plans.index');
     }

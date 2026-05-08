@@ -7,8 +7,49 @@ export default function Edit({ workout, exercises }) {
         description: workout.description || '',
         difficulty: workout.difficulty || '',
         duration_minutes: workout.duration_minutes || '',
-        exercises: workout.exercises.map((exercise) => exercise.id)
+        exercises: workout.exercises.map((exercise) => ({
+            id: exercise.id,
+            sets: exercise.pivot?.sets || '',
+            reps: exercise.pivot?.reps || '',
+            rest_seconds: exercise.pivot?.rest_seconds || '',
+        }))
     });
+
+    function toggleExercise(id, checked) {
+        const exerciseId = Number(id);
+
+        if (checked) {
+            setData('exercises', [
+                ...data.exercises,
+                {
+                    id: exerciseId,
+                    sets: '',
+                    reps: '',
+                    rest_seconds: '',
+                },
+            ]);
+        } else {
+            setData(
+                'exercises',
+                data.exercises.filter(
+                    (exercise) => Number(exercise.id) !== exerciseId
+                )
+            );
+        }
+    }
+
+    function updateExerciseField(id, field, value) {
+        const exerciseId = Number(id);
+
+        setData(
+            'exercises',
+            data.exercises.map((exercise) =>
+                Number(exercise.id) === exerciseId
+                    ? { ...exercise, [field]: value }
+                    : exercise
+            )
+        );
+    }
 
     function submit(e) {
         e.preventDefault();
@@ -82,32 +123,89 @@ export default function Edit({ workout, exercises }) {
                             </Link>
                         </div>
                     ) : (
-                        exercises.map((exercise) => (
-                            <label key={exercise.id} style={{ display: 'block' }}>
-                                <input
-                                    className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
-                                    type="checkbox"
-                                    value={exercise.id}
-                                    checked={data.exercises.includes(exercise.id)}
-                                    onChange={(e) => {
-                                        const id = Number(e.target.value);
+                        <div className="space-y-3">
+                            {exercises.map((exercise) => {
+                                const selectedExercise = data.exercises.find(
+                                    (item) => Number(item.id) === Number(exercise.id)
+                                );
 
-                                        if (e.target.checked) {
-                                            setData('exercises', [...data.exercises, id]);
-                                        } else {
-                                            setData(
-                                                'exercises',
-                                                data.exercises.filter(
-                                                    (exerciseId) => exerciseId !== id
-                                                )
-                                            );
-                                        }
-                                    }}
-                                />
+                                return (
+                                    <div
+                                        key={exercise.id}
+                                        className="rounded-lg bg-slate-950 border border-slate-800 p-3"
+                                    >
+                                        <label className="flex items-center cursor-pointer">
+                                            <input
+                                                className="mr-3"
+                                                type="checkbox"
+                                                value={exercise.id}
+                                                checked={!!selectedExercise}
+                                                onChange={(e) =>
+                                                    toggleExercise(
+                                                        Number(e.target.value),
+                                                        e.target.checked
+                                                    )
+                                                }
+                                            />
 
-                                {exercise.name} — {exercise.muscle_group}
-                            </label>
-                        ))
+                                            <span>
+                                                {exercise.name}
+                                                <span className="text-slate-500">
+                                                    {' '}
+                                                    — {exercise.muscle_group}
+                                                </span>
+                                            </span>
+                                        </label>
+
+                                        {selectedExercise && (
+                                            <div className="mt-4 grid gap-3 md:grid-cols-3">
+                                                <input
+                                                    type="number"
+                                                    placeholder="Sets"
+                                                    value={selectedExercise.sets}
+                                                    onChange={(e) =>
+                                                        updateExerciseField(
+                                                            exercise.id,
+                                                            'sets',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+
+                                                <input
+                                                    type="number"
+                                                    placeholder="Reps"
+                                                    value={selectedExercise.reps}
+                                                    onChange={(e) =>
+                                                        updateExerciseField(
+                                                            exercise.id,
+                                                            'reps',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+
+                                                <input
+                                                    type="number"
+                                                    placeholder="Rust seconden"
+                                                    value={selectedExercise.rest_seconds}
+                                                    onChange={(e) =>
+                                                        updateExerciseField(
+                                                            exercise.id,
+                                                            'rest_seconds',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
                     )}
                 </div>
 

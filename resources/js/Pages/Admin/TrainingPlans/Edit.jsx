@@ -8,18 +8,44 @@ export default function Edit({ plan, workouts }) {
         goal: plan.goal || '',
         difficulty: plan.difficulty || '',
         duration_weeks: plan.duration_weeks || '',
-        workouts: plan.workouts.map((workout) => workout.id),
+        workouts: plan.workouts.map((workout) => ({
+            id: workout.id,
+            day_name: workout.pivot?.day_name || '',
+        }))
     });
 
     function toggleWorkout(id, checked) {
+        const workoutId = Number(id);
+
         if (checked) {
-            setData('workouts', [...data.workouts, id]);
+            setData('workouts', [
+                ...data.workouts,
+                {
+                    id: workoutId,
+                    day_name: '',
+                },
+            ]);
         } else {
             setData(
                 'workouts',
-                data.workouts.filter((workoutId) => workoutId !== id)
+                data.workouts.filter(
+                    (workout) => Number(workout.id) !== workoutId
+                )
             );
         }
+    }
+
+    function updateWorkoutField(id, field, value) {
+        const workoutId = Number(id);
+
+        setData(
+            'workouts',
+            data.workouts.map((workout) =>
+                Number(workout.id) === workoutId
+                    ? { ...workout, [field]: value }
+                    : workout
+            )
+        );
     }
 
     function submit(e) {
@@ -98,22 +124,61 @@ export default function Edit({ plan, workouts }) {
                             </Link>
                         </div>
                     ) : (
-                        workouts.map((workout) => (
-                            <label key={workout.id} className="block mb-2">
-                                <input
-                                    className="mr-5 rounded-lg bg-slate-900 border border-slate-700 p-3"
-                                    type="checkbox"
-                                    checked={data.workouts.includes(workout.id)}
-                                    onChange={(e) =>
-                                        toggleWorkout(workout.id, e.target.checked)
-                                    }
-                                />
-                                {workout.title} — {workout.difficulty}
-                            </label>
-                        ))
+                        <div className="space-y-3">
+                            {workouts.map((workout) => {
+                                const selectedWorkout = data.workouts.find(
+                                    (item) => Number(item.id) === Number(workout.id)
+                                );
+
+                                return (
+                                    <div
+                                        key={workout.id}
+                                        className="rounded-lg bg-slate-950 border border-slate-800 p-3"
+                                    >
+                                        <label className="flex items-center cursor-pointer">
+                                            <input
+                                                className="mr-3"
+                                                type="checkbox"
+                                                checked={!!selectedWorkout}
+                                                onChange={(e) =>
+                                                    toggleWorkout(
+                                                        workout.id,
+                                                        e.target.checked
+                                                    )
+                                                }
+                                            />
+
+                                            <span>
+                                                {workout.title}
+                                                <span className="text-slate-500">
+                                                    {' '}— {workout.difficulty}
+                                                </span>
+                                            </span>
+                                        </label>
+
+                                        {selectedWorkout && (
+                                            <div className="mt-4">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Bijv. Dag 1 - Push Day"
+                                                    value={selectedWorkout.day_name}
+                                                    onChange={(e) =>
+                                                        updateWorkoutField(
+                                                            workout.id,
+                                                            'day_name',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
                     )}
                 </div>
-
                 <div className="flex gap-3">
                     <button
                         disabled={processing}

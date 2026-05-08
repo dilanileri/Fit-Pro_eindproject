@@ -74,7 +74,7 @@ export default function Show({ trainingPlan, isFavorite }) {
                             className="rounded-xl bg-slate-900 border border-slate-800 p-6"
                         >
                             <h3 className="text-xl font-bold mb-2">
-                                {`Dag ${index + 1}`} - {workout.title}
+                                {workout.pivot?.day_name || `Dag ${index + 1}`} - {workout.title}
                             </h3>
 
                             <p className="text-slate-400 mb-1">
