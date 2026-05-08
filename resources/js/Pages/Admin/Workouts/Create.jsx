@@ -17,15 +17,33 @@ export default function Create({ exercises }) {
 
     function toggleExercise(id, checked) {
         if (checked) {
-            setData('exercises', [...data.exercises, id]);
+            setData('exercises', [
+                ...data.exercises,
+                {
+                    id: id,
+                    sets: '',
+                    reps: '',
+                    rest_seconds: '',
+                },
+            ]);
         } else {
             setData(
                 'exercises',
-                data.exercises.filter((exerciseId) => exerciseId !== id)
+                data.exercises.filter((exercise) => exercise.id !== id)
             );
         }
     }
 
+    function updateExerciseField(id, field, value) {
+        setData(
+            'exercises',
+            data.exercises.map((exercise) =>
+                exercise.id === id
+                    ? { ...exercise, [field]: value }
+                    : exercise
+            )
+        );
+    }
     return (
         <AdminLayout>
             <Link
@@ -107,37 +125,90 @@ export default function Create({ exercises }) {
                         </div>
                     ) : (
                         <div className="space-y-3">
-                            {exercises.map((exercise) => (
-                                <label
-                                    key={exercise.id}
-                                    className="flex items-center rounded-lg bg-slate-950 border border-slate-800 p-3 cursor-pointer"
-                                >
-                                    <input
-                                        className="mr-3"
-                                        type="checkbox"
-                                        value={exercise.id}
-                                        checked={data.exercises.includes(exercise.id)}
-                                        onChange={(e) =>
-                                            toggleExercise(
-                                                Number(e.target.value),
-                                                e.target.checked
-                                            )
-                                        }
-                                    />
+                            {exercises.map((exercise) => {
+                                const selectedExercise = data.exercises.find(
+                                    (item) => item.id === exercise.id
+                                );
 
-                                    <span>
-                                        {exercise.name}
-                                        <span className="text-slate-500">
-                                            {' '}
-                                            — {exercise.muscle_group}
-                                        </span>
-                                    </span>
-                                </label>
-                            ))}
+                                return (
+                                    <div
+                                        key={exercise.id}
+                                        className="rounded-lg bg-slate-950 border border-slate-800 p-3"
+                                    >
+                                        <label className="flex items-center cursor-pointer">
+                                            <input
+                                                className="mr-3"
+                                                type="checkbox"
+                                                value={exercise.id}
+                                                checked={!!selectedExercise}
+                                                onChange={(e) =>
+                                                    toggleExercise(
+                                                        Number(e.target.value),
+                                                        e.target.checked
+                                                    )
+                                                }
+                                            />
+
+                                            <span>
+                                                {exercise.name}
+                                                <span className="text-slate-500">
+                                                    {' '}
+                                                    — {exercise.muscle_group}
+                                                </span>
+                                            </span>
+                                        </label>
+
+                                        {selectedExercise && (
+                                            <div className="mt-4 grid gap-3 md:grid-cols-3">
+                                                <input
+                                                    type="number"
+                                                    placeholder="Sets"
+                                                    value={selectedExercise.sets}
+                                                    onChange={(e) =>
+                                                        updateExerciseField(
+                                                            exercise.id,
+                                                            'sets',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+
+                                                <input
+                                                    type="number"
+                                                    placeholder="Reps"
+                                                    value={selectedExercise.reps}
+                                                    onChange={(e) =>
+                                                        updateExerciseField(
+                                                            exercise.id,
+                                                            'reps',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+
+                                                <input
+                                                    type="number"
+                                                    placeholder="Rust seconden"
+                                                    value={selectedExercise.rest_seconds}
+                                                    onChange={(e) =>
+                                                        updateExerciseField(
+                                                            exercise.id,
+                                                            'rest_seconds',
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="rounded-lg bg-slate-900 border border-slate-700 p-2"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     )}
                 </div>
-
                 <button
                     disabled={processing}
                     className="rounded-lg bg-slate-800 px-5 py-2 text-green-400 hover:bg-slate-700 disabled:opacity-50"
