@@ -64,16 +64,18 @@ export default function Create({ exercises }) {
                 <div className="rounded-xl bg-slate-900 border border-slate-800 p-6 space-y-4">
                     <h2 className="text-xl font-semibold">Workout informatie</h2>
 
-                    <input
-                        className="w-full rounded-lg bg-slate-950 border border-slate-700 p-3"
-                        type="text"
-                        placeholder="Titel"
-                        value={data.title}
-                        onChange={(e) => setData('title', e.target.value)}
-                    />
-                    {errors.title && (
-                        <p className="text-red-400 text-sm">{errors.title}</p>
-                    )}
+                    <div>
+                        <input
+                            className="w-full rounded-lg bg-slate-950 border border-slate-700 p-3"
+                            type="text"
+                            placeholder="Titel"
+                            value={data.title}
+                            onChange={(e) => setData('title', e.target.value)}
+                        />
+                        {errors.title && (
+                            <p className="mt-1 text-red-400 text-sm">Titel is verplicht.</p>
+                        )}
+                    </div>
 
                     <textarea
                         className="w-full rounded-lg bg-slate-950 border border-slate-700 p-3"
@@ -83,16 +85,18 @@ export default function Create({ exercises }) {
                         rows="4"
                     />
 
-                    <input
-                        className="w-full rounded-lg bg-slate-950 border border-slate-700 p-3"
-                        type="text"
-                        placeholder="Moeilijkheid"
-                        value={data.difficulty}
-                        onChange={(e) => setData('difficulty', e.target.value)}
-                    />
-                    {errors.difficulty && (
-                        <p className="text-red-400 text-sm">{errors.difficulty}</p>
-                    )}
+                    <div>
+                        <input
+                            className="w-full rounded-lg bg-slate-950 border border-slate-700 p-3"
+                            type="text"
+                            placeholder="Moeilijkheid"
+                            value={data.difficulty}
+                            onChange={(e) => setData('difficulty', e.target.value)}
+                        />
+                        {errors.difficulty && (
+                            <p className="mt-1 text-red-400 text-sm">Moeilijkheidsgraad is verplicht.</p>
+                        )}
+                    </div>
 
                     <input
                         className="w-full rounded-lg bg-slate-950 border border-slate-700 p-3"

@@ -10,7 +10,11 @@ export default function GuestLayout({ children }) {
                         href="/"
                         className="text-2xl font-bold text-green-400"
                     >
-                        Fit-Pro
+                        <img
+                            src="/images/Logo_darktheme.png"
+                            alt="Fit-Pro logo"
+                            className="h-50 w-50 object-contain"
+                        />
                     </Link>
 
                     <nav className="flex items-center gap-4">

@@ -1,4 +1,12 @@
 import { Head, Link } from '@inertiajs/react';
+import {
+    ClipboardList,
+    Dumbbell,
+    Activity,
+    Flame,
+    ArrowRight,
+    BadgeCheck
+} from 'lucide-react';
 
 export default function Welcome({ auth }) {
     return (
@@ -8,7 +16,7 @@ export default function Welcome({ auth }) {
             <div className="min-h-screen bg-slate-950 text-white">
                 <header className="flex items-center justify-between px-8 py-6 border-b border-slate-800">
                     <h1 className="text-2xl font-bold text-green-400">
-                        Fit-Pro
+                        <img className="h-50 w-50 object-contain" src="images/Logo_darktheme.png" alt="Fit-Pro logo" />
                     </h1>
 
                     <nav className="flex gap-4">
@@ -40,68 +48,79 @@ export default function Welcome({ auth }) {
                 </header>
 
                 <main className="relative overflow-hidden">
-                    <section className="mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-6 py-24 text-center">
-                        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-green-400">
-                            Fictionele gym webapp
-                        </p>
+                    <section className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+                        style={{
+                            backgroundImage: "url('/images/FP-hero.png')",
+                        }}
+                    >
+                        <div className="absolute inset-0 bg-black/60"></div>
+                        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 text-center">
 
-                        <h1 className="max-w-4xl text-5xl font-black leading-tight text-white md:text-7xl">
-                            Train slimmer.
-                            <span className="block text-green-400">
-                                Word sterker.
-                            </span>
-                        </h1>
+                            <h1 className=" max-w-4xl text-5xl font-black leading-tight text-white md:text-7xl">
+                                Train slimmer.
+                                <span className="block text-green-400">
+                                    Word sterker.
+                                </span>
+                            </h1>
 
-                        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-400 md:text-xl">
-                            Ontdek professionele trainingsschema’s, workouts en oefeningen
-                            binnen één modern fitnessplatform.
-                        </p>
+                            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-400 md:text-xl">
+                                Ontdek professionele trainingsschema’s, workouts en oefeningen
+                                binnen één modern fitnessplatform.
+                            </p>
 
-                        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                            <Link
-                                href="/register"
-                                className="rounded-xl bg-green-500 px-8 py-4 text-lg font-bold text-slate-950 transition hover:bg-green-400"
-                            >
-                                Word member
-                            </Link>
+                            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                                <Link
+                                    href="/register"
+                                    className=" flex rounded-xl bg-green-500 px-8 py-4 text-lg font-bold text-slate-950 transition hover:bg-green-400"
+                                >
+                                    Word member
+                                    <ArrowRight className='h-5 w-4 my-auto ml-2' />
+                                </Link>
 
-                            <Link
-                                href="/login"
-                                className="rounded-xl border border-slate-700 px-8 py-4 text-lg font-semibold text-white transition hover:border-green-400 hover:text-green-400"
-                            >
-                                Ik heb al een account
-                            </Link>
-                        </div>
-
-                        <div className="mt-20 grid w-full max-w-5xl gap-6 md:grid-cols-3">
-                            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
-                                <h3 className="mb-3 text-xl font-bold text-white">
-                                    Trainingsschema’s
-                                </h3>
-
-                                <p className="text-slate-400">
-                                    Volg professionele schema’s afgestemd op jouw doelen.
-                                </p>
+                                <Link
+                                    href="/login"
+                                    className="rounded-xl border border-slate-700 px-8 py-4 text-lg font-semibold text-white transition hover:border-green-400 hover:text-green-400"
+                                >
+                                    Ik heb al een account
+                                </Link>
                             </div>
 
-                            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
-                                <h3 className="mb-3 text-xl font-bold text-white">
-                                    Workouts
-                                </h3>
 
-                                <p className="text-slate-400">
-                                    Bekijk gestructureerde trainingsdagen met sets en reps.
-                                </p>
-                            </div>
 
-                            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
-                                <h3 className="mb-3 text-xl font-bold text-white">
-                                    Oefeningen
-                                </h3>
+                            <div className="mt-20 grid w-full max-w-5xl gap-6 md:grid-cols-3">
+                                <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
+                                    <ClipboardList className="mb-4 h-8 w-8 text-green-400 mx-auto" />
+                                    <h3 className="mb-3 text-xl font-bold text-white">
+                                        Trainingsschema’s
+                                    </h3>
 
-                                <p className="text-slate-400">
-                                    Leer correcte uitvoering met duidelijke uitleg.
-                                </p>
+
+                                    <p className="text-slate-400">
+                                        Volg professionele schema’s afgestemd op jouw doelen.
+                                    </p>
+                                </div>
+
+                                <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
+                                    <Flame className='mb-4 h-8 w-8 text-green-400 mx-auto' />
+                                    <h3 className="mb-3 text-xl font-bold text-white">
+                                        Workouts
+                                    </h3>
+
+                                    <p className="text-slate-400">
+                                        Bekijk gestructureerde trainingsdagen met sets en reps.
+                                    </p>
+                                </div>
+
+                                <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
+                                    <Dumbbell className='mb-4 h-8 w-8 text-green-400 mx-auto ' />
+                                    <h3 className="mb-3 text-xl font-bold text-white">
+                                        Oefeningen
+                                    </h3>
+
+                                    <p className="text-slate-400">
+                                        Leer correcte uitvoering met duidelijke uitleg.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -169,9 +188,12 @@ export default function Welcome({ auth }) {
                                 Membership
                             </p>
 
-                            <h2 className="mt-4 text-4xl font-bold text-white">
-                                Start jouw fitness journey
-                            </h2>
+                            <div className='flex flex-col items-center'>
+                                <h2 className="mt-4 text-4xl font-bold text-white">
+                                    Start jouw fitness journey
+                                </h2>
+                                <BadgeCheck className='text-yellow-400 mt-5' />
+                            </div>
 
                             <p className="mx-auto mt-4 max-w-2xl text-slate-400">
                                 Krijg toegang tot trainingsschema’s, workouts en oefeningen
@@ -216,7 +238,7 @@ export default function Welcome({ auth }) {
 
                                 <div className="flex items-center gap-3">
                                     <span className="text-green-400">✔</span>
-                                    <p className="text-slate-300">
+                                    <p className=" text-slate-300">
                                         Persoonlijk profiel en BMI
                                     </p>
                                 </div>
@@ -276,7 +298,7 @@ export default function Welcome({ auth }) {
                         </div>
                     </div>
                 </footer>
-            </div>
+            </div >
         </>
     );
 }

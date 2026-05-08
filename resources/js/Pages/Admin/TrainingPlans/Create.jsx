@@ -66,7 +66,7 @@ export default function Create({ workouts }) {
                         value={data.title}
                         onChange={(e) => setData('title', e.target.value)}
                     />
-                    {errors.title && <p className="text-red-400">{errors.title}</p>}
+                    {errors.title && <p className="mt-1 text-sm text-red-400">Titel is verplicht.</p>}
                 </div>
 
                 <textarea
@@ -75,24 +75,27 @@ export default function Create({ workouts }) {
                     value={data.description}
                     onChange={(e) => setData('description', e.target.value)}
                 />
+                <div>
+                    <input
+                        className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
+                        type="text"
+                        placeholder="Doel bv. spiermassa, afvallen, conditie"
+                        value={data.goal}
+                        onChange={(e) => setData('goal', e.target.value)}
+                    />
+                    {errors.goal && <p className=" mt-1 text-sm text-red-400">Doel is verplicht.</p>}
+                </div>
 
-                <input
-                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
-                    type="text"
-                    placeholder="Doel bv. spiermassa, afvallen, conditie"
-                    value={data.goal}
-                    onChange={(e) => setData('goal', e.target.value)}
-                />
-                {errors.goal && <p className="text-red-400">{errors.goal}</p>}
-
-                <input
-                    className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
-                    type="text"
-                    placeholder="Niveau bv. beginner, gemiddeld, gevorderd"
-                    value={data.difficulty}
-                    onChange={(e) => setData('difficulty', e.target.value)}
-                />
-                {errors.difficulty && <p className="text-red-400">{errors.difficulty}</p>}
+                <div>
+                    <input
+                        className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
+                        type="text"
+                        placeholder="Niveau bv. beginner, gemiddeld, gevorderd"
+                        value={data.difficulty}
+                        onChange={(e) => setData('difficulty', e.target.value)}
+                    />
+                    {errors.difficulty && <p className="mt-1 text-sm text-red-400">Moeilijkheidsgraad is verplicht</p>}
+                </div>
 
                 <input
                     className="w-full rounded-lg bg-slate-900 border border-slate-700 p-3"

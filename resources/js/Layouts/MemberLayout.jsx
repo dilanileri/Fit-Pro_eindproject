@@ -8,7 +8,11 @@ export default function MemberLayout({ children }) {
             <header className="border-b border-slate-800 bg-slate-900">
                 <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
                     <Link href="/member/training-plans" className="text-2xl font-bold text-green-400">
-                        Fit-Pro
+                        <img
+                            src="/images/Logo_darktheme.png"
+                            alt="Fit-Pro logo"
+                            className="h-50 w-50 object-contain"
+                        />
                     </Link>
 
                     <nav className="flex items-center gap-6">

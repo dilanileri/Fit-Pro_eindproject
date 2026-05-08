@@ -28,23 +28,27 @@ export default function Create() {
             </Link>
 
             <form onSubmit={submit}>
-                <input
-                    className="my-3 w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
-                    type="text"
-                    placeholder="Naam"
-                    value={data.name}
-                    onChange={(e) => setData('name', e.target.value)}
-                />
-                {errors.name && <div>{errors.name}</div>}
+                <div>
+                    <input
+                        className="my-3 w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
+                        type="text"
+                        placeholder="Naam"
+                        value={data.name}
+                        onChange={(e) => setData('name', e.target.value)}
+                    />
+                    {errors.name && <p className='text-sm text-red-400'>Naam is verplicht.</p>}
+                </div>
 
-                <input
-                    className=" mb-3 w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
-                    type="text"
-                    placeholder="Spiergroep"
-                    value={data.muscle_group}
-                    onChange={(e) => setData('muscle_group', e.target.value)}
-                />
-                {errors.muscle_group && <div>{errors.muscle_group}</div>}
+                <div>
+                    <input
+                        className=" mb-3 w-full rounded-lg bg-slate-900 border border-slate-700 p-3"
+                        type="text"
+                        placeholder="Spiergroep"
+                        value={data.muscle_group}
+                        onChange={(e) => setData('muscle_group', e.target.value)}
+                    />
+                    {errors.muscle_group && <p className='text-sm text-red-400'>Spiergroep is verplicht.</p>}
+                </div>
 
                 <input
                     className="mb-3 w-full rounded-lg bg-slate-900 border border-slate-700 p-3"

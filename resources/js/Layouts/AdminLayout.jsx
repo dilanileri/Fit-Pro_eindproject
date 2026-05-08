@@ -7,7 +7,11 @@ export default function AdminLayout({ children }) {
             <div className="flex">
                 <aside className="w-64 min-h-screen bg-slate-900 p-6">
                     <h1 className="text-2xl font-bold text-green-400 mb-8">
-                        Fit-Pro Admin
+                        <img
+                            src="/images/Logo_darktheme.png"
+                            alt="Fit-Pro logo"
+                            className="h-50 w-50 object-contain"
+                        />
                     </h1>
 
                     <nav className="space-y-3">
