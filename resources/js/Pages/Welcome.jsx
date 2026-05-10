@@ -1,304 +1,324 @@
-import { Head, Link } from '@inertiajs/react';
+import { Link, Head } from '@inertiajs/react';
 import {
+    ArrowRight,
+    BadgeCheck,
+    Check,
     ClipboardList,
     Dumbbell,
-    Activity,
     Flame,
-    ArrowRight,
-    BadgeCheck
+    HeartPulse,
+    Target,
+    Users,
+    ShieldCheck
 } from 'lucide-react';
 
 export default function Welcome({ auth }) {
     return (
         <>
-            <Head title="Welkom bij Fit-Pro" />
+            <Head title="Fit-Pro" />
 
-            <div className="min-h-screen bg-slate-950 text-white">
-                <header className="flex items-center justify-between px-8 py-6 border-b border-slate-800">
-                    <h1 className="text-2xl font-bold text-green-400">
-                        <img className="h-50 w-50 object-contain" src="images/Logo_darktheme.png" alt="Fit-Pro logo" />
-                    </h1>
+            <main className="min-h-screen bg-slate-950 text-white">
+                <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+                    <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+                        <Link href="/">
+                            <img
+                                src="/images/Logo_darktheme.png"
+                                alt="Fit-Pro logo"
+                                className="h-14 w-auto object-contain"
+                            />
+                        </Link>
 
-                    <nav className="flex gap-4">
-                        {auth.user ? (
-                            <Link
-                                href={auth.user.role === 'admin' ? '/admin' : '/member'}
-                                className="text-slate-300 hover:text-green-400"
-                            >
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <>
+                        <nav className="flex items-center gap-3">
+                            {auth?.user ? (
                                 <Link
-                                    href="/login"
-                                    className="text-slate-300 hover:text-green-400"
+                                    href={auth.user.role === 'admin' ? '/admin' : '/member'}
+                                    className="rounded-xl bg-green-500 px-5 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-green-400"
                                 >
-                                    Login
+                                    Dashboard
                                 </Link>
+                            ) : (
+                                <>
+                                    <Link
+                                        href="/login"
+                                        className="hidden rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-300 transition hover:text-green-400 sm:inline-flex"
+                                    >
+                                        Inloggen
+                                    </Link>
 
-                                <Link
-                                    href="/register"
-                                    className="rounded-lg bg-green-500 px-4 py-2 font-semibold text-slate-950"
-                                >
-                                    Registreer
-                                </Link>
-                            </>
-                        )}
-                    </nav>
+                                    <Link
+                                        href="/register"
+                                        className="rounded-xl bg-green-500 px-5 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-green-400"
+                                    >
+                                        Start nu
+                                    </Link>
+                                </>
+                            )}
+                        </nav>
+                    </div>
                 </header>
 
-                <main className="relative overflow-hidden">
-                    <section className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
-                        style={{
-                            backgroundImage: "url('/images/FP-hero.png')",
-                        }}
-                    >
-                        <div className="absolute inset-0 bg-black/60"></div>
-                        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 text-center">
+                <section
+                    className="relative flex min-h-screen items-center bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: "url('/images/FP-hero.png')" }}
+                >
+                    <div className="absolute inset-0 bg-black/65"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-transparent"></div>
+                    <div className="absolute -bottom-24 left-20 h-72 w-72 rounded-full bg-green-500/20 blur-3xl"></div>
 
-                            <h1 className=" max-w-4xl text-5xl font-black leading-tight text-white md:text-7xl">
+                    <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 px-6 pt-28 lg:grid-cols-[1fr_360px] lg:items-center">
+                        <div className="max-w-3xl">
+                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-green-400">
+                                <Flame className="h-4 w-4" />
+                                Premium fitness ervaring
+                            </div>
+
+                            <h1 className="text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
                                 Train slimmer.
                                 <span className="block text-green-400">
                                     Word sterker.
                                 </span>
                             </h1>
 
-                            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-400 md:text-xl">
-                                Ontdek professionele trainingsschema’s, workouts en oefeningen
-                                binnen één modern fitnessplatform.
+                            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                                Fit-Pro helpt je doelgericht trainen met duidelijke
+                                schema’s, overzichtelijke workouts en oefeningen die
+                                passen bij jouw niveau.
                             </p>
 
-                            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                                 <Link
                                     href="/register"
-                                    className=" flex rounded-xl bg-green-500 px-8 py-4 text-lg font-bold text-slate-950 transition hover:bg-green-400"
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-green-500 px-7 py-4 font-bold text-slate-950 shadow-lg shadow-green-500/20 transition hover:-translate-y-0.5 hover:bg-green-400 sm:w-auto"
                                 >
-                                    Word member
-                                    <ArrowRight className='h-5 w-4 my-auto ml-2' />
+                                    Word lid
+                                    <ArrowRight className="h-5 w-5" />
                                 </Link>
 
-                                <Link
-                                    href="/login"
-                                    className="rounded-xl border border-slate-700 px-8 py-4 text-lg font-semibold text-white transition hover:border-green-400 hover:text-green-400"
+                                <a
+                                    href="#memberships"
+                                    className="inline-flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur transition hover:border-green-400 hover:text-green-400 sm:w-auto"
                                 >
-                                    Ik heb al een account
-                                </Link>
-                            </div>
-
-
-
-                            <div className="mt-20 grid w-full max-w-5xl gap-6 md:grid-cols-3">
-                                <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
-                                    <ClipboardList className="mb-4 h-8 w-8 text-green-400 mx-auto" />
-                                    <h3 className="mb-3 text-xl font-bold text-white">
-                                        Trainingsschema’s
-                                    </h3>
-
-
-                                    <p className="text-slate-400">
-                                        Volg professionele schema’s afgestemd op jouw doelen.
-                                    </p>
-                                </div>
-
-                                <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
-                                    <Flame className='mb-4 h-8 w-8 text-green-400 mx-auto' />
-                                    <h3 className="mb-3 text-xl font-bold text-white">
-                                        Workouts
-                                    </h3>
-
-                                    <p className="text-slate-400">
-                                        Bekijk gestructureerde trainingsdagen met sets en reps.
-                                    </p>
-                                </div>
-
-                                <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 backdrop-blur">
-                                    <Dumbbell className='mb-4 h-8 w-8 text-green-400 mx-auto ' />
-                                    <h3 className="mb-3 text-xl font-bold text-white">
-                                        Oefeningen
-                                    </h3>
-
-                                    <p className="text-slate-400">
-                                        Leer correcte uitvoering met duidelijke uitleg.
-                                    </p>
-                                </div>
+                                    Bekijk abonnementen
+                                </a>
                             </div>
                         </div>
-                    </section>
 
-                    {/* Features sectie */}
-                    <section id='features' className="mx-auto max-w-7xl px-6 py-24">
-                        <div className="mb-12 text-center">
-                            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-green-400">
-                                Alles in één platform
-                            </p>
+                        <div className="hidden rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/40 backdrop-blur-xl lg:block">
+                            <Dumbbell className="mb-6 h-12 w-12 text-green-400" />
 
-                            <h2 className="mt-4 text-4xl font-bold text-white">
-                                Wat kan je met Fit-Pro?
+                            <h2 className="text-3xl font-black text-white">
+                                Alles voor jouw training
                             </h2>
 
-                            <p className="mx-auto mt-4 max-w-2xl text-slate-400">
-                                Fit-Pro combineert trainingsschema’s, workouts, oefeningen en profieldata
-                                in één eenvoudige fitness webapp.
-                            </p>
-                        </div>
-
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-                                <h3 className="mb-3 text-xl font-bold text-white">
-                                    Schema’s volgen
-                                </h3>
-                                <p className="text-slate-400">
-                                    Bekijk duidelijke trainingsschema’s zoals PPL, full body of upper/lower.
-                                </p>
+                            <div className="mt-6 space-y-3">
+                                {[
+                                    'Doelgerichte trainingsschema’s',
+                                    'Duidelijke workouts',
+                                    'Oefeningen per spiergroep',
+                                    'Persoonlijk fitnessoverzicht',
+                                ].map((item) => (
+                                    <div
+                                        key={item}
+                                        className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 p-4"
+                                    >
+                                        <BadgeCheck className="h-5 w-5 text-green-400" />
+                                        <span className="text-sm font-semibold text-slate-300">
+                                            {item}
+                                        </span>
+                                    </div>
+                                ))}
                             </div>
-
-                            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-                                <h3 className="mb-3 text-xl font-bold text-white">
-                                    Workouts openen
-                                </h3>
-                                <p className="text-slate-400">
-                                    Bekijk per trainingsdag welke oefeningen je moet uitvoeren.
-                                </p>
-                            </div>
-
-                            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-                                <h3 className="mb-3 text-xl font-bold text-white">
-                                    Oefeningen leren
-                                </h3>
-                                <p className="text-slate-400">
-                                    Lees uitleg, spiergroep, moeilijkheid en techniek per oefening.
-                                </p>
-                            </div>
-
-                            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-                                <h3 className="mb-3 text-xl font-bold text-white">
-                                    Profiel beheren
-                                </h3>
-                                <p className="text-slate-400">
-                                    Vul leeftijd, lengte, gewicht en BMI-gegevens aan in je profiel.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Lidmaatschap sectie */}
-                    <section id='membership' className="mx-auto max-w-7xl px-6 py-24">
-                        <div className="mb-12 text-center">
-                            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-green-400">
-                                Membership
-                            </p>
-
-                            <div className='flex flex-col items-center'>
-                                <h2 className="mt-4 text-4xl font-bold text-white">
-                                    Start jouw fitness journey
-                                </h2>
-                                <BadgeCheck className='text-yellow-400 mt-5' />
-                            </div>
-
-                            <p className="mx-auto mt-4 max-w-2xl text-slate-400">
-                                Krijg toegang tot trainingsschema’s, workouts en oefeningen
-                                binnen het Fit-Pro platform.
-                            </p>
-                        </div>
-
-                        <div className="mx-auto max-w-xl rounded-3xl border border-green-500 bg-slate-900 p-10 text-center shadow-2xl shadow-green-500/10">
-                            <p className="text-sm uppercase tracking-[0.3em] text-green-400">
-                                Basic Member
-                            </p>
-
-                            <h3 className="mt-4 text-5xl font-black text-white">
-                                €19,99
-                            </h3>
-
-                            <p className="mt-2 text-slate-400">
-                                per maand
-                            </p>
-
-                            <div className="mt-10 space-y-4 text-left">
-                                <div className="flex items-center gap-3">
-                                    <span className="text-green-400">✔</span>
-                                    <p className="text-slate-300">
-                                        Toegang tot trainingsschema’s
-                                    </p>
-                                </div>
-
-                                <div className="flex items-center gap-3">
-                                    <span className="text-green-400">✔</span>
-                                    <p className="text-slate-300">
-                                        Professionele workouts
-                                    </p>
-                                </div>
-
-                                <div className="flex items-center gap-3">
-                                    <span className="text-green-400">✔</span>
-                                    <p className="text-slate-300">
-                                        Oefening uitleg en techniek
-                                    </p>
-                                </div>
-
-                                <div className="flex items-center gap-3">
-                                    <span className="text-green-400">✔</span>
-                                    <p className=" text-slate-300">
-                                        Persoonlijk profiel en BMI
-                                    </p>
-                                </div>
-                            </div>
-
-                            <Link
-                                href="/register"
-                                className="mt-10 inline-block w-full rounded-xl bg-green-500 px-6 py-4 text-lg font-bold text-slate-950 transition hover:bg-green-400"
-                            >
-                                Word member
-                            </Link>
-                        </div>
-                    </section>
-                    <section className="border-t border-slate-800 px-6 py-24">
-                        <div className="mx-auto max-w-4xl text-center">
-                            <h2 className="text-4xl font-black text-white">
-                                Klaar om sterker te worden?
-                            </h2>
-
-                            <p className="mx-auto mt-4 max-w-2xl text-slate-400">
-                                Maak vandaag nog een account aan en ontdek hoe Fit-Pro je helpt
-                                om gestructureerd te trainen.
-                            </p>
-
-                            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                                <Link
-                                    href="/register"
-                                    className="rounded-xl bg-green-500 px-8 py-4 text-lg font-bold text-slate-950 transition hover:bg-green-400"
-                                >
-                                    Start vandaag
-                                </Link>
-
-                                <Link
-                                    href="/login"
-                                    className="rounded-xl border border-slate-700 px-8 py-4 text-lg font-semibold text-white transition hover:border-green-400 hover:text-green-400"
-                                >
-                                    Ik heb al een account
-                                </Link>
-                            </div>
-                        </div>
-                    </section>
-                </main>
-                <footer className="border-t border-slate-800 px-6 py-8">
-                    <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-sm text-slate-500 md:flex-row">
-                        <p>
-                            © 2026 Fit-Pro. Fictionele gym webapp voor eindproject.
-                        </p>
-
-                        <div className="flex gap-4">
-                            <a href="#features" className="hover:text-green-400">
-                                Features
-                            </a>
-
-                            <a href="#membership" className="hover:text-green-400">
-                                Membership
-                            </a>
                         </div>
                     </div>
+                </section>
+
+                <section className="mx-auto max-w-7xl px-6 py-24">
+                    <div className="max-w-2xl">
+                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
+                            Waarom Fit-Pro
+                        </p>
+
+                        <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">
+                            Fitness zonder chaos
+                        </h2>
+
+                        <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
+                            Geen onduidelijke lijstjes of losse notities. Alles wat je
+                            nodig hebt om gestructureerd te trainen staat overzichtelijk
+                            bij elkaar.
+                        </p>
+                    </div>
+
+                    <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {[
+                            {
+                                icon: ClipboardList,
+                                title: 'Heldere schema’s',
+                                text: 'Volg trainingsschema’s met duidelijke dagen en doelen.',
+                            },
+                            {
+                                icon: Dumbbell,
+                                title: 'Sterke workouts',
+                                text: 'Bekijk per workout de oefeningen, sets, reps en rusttijd.',
+                            },
+                            {
+                                icon: Target,
+                                title: 'Train met focus',
+                                text: 'Kies schema’s die aansluiten bij jouw doel en niveau.',
+                            },
+                            {
+                                icon: HeartPulse,
+                                title: 'BMI inzicht',
+                                text: 'Volg je lichaamsgegevens via je persoonlijke profiel.',
+                            },
+                            {
+                                icon: Users,
+                                title: 'Voor elk niveau',
+                                text: 'Geschikt voor beginners én leden die gerichter willen trainen.',
+                            },
+                            {
+                                icon: Flame,
+                                title: 'Blijf consistent',
+                                text: 'Bewaar favoriete schema’s en ga sneller verder met trainen.',
+                            },
+                        ].map((feature) => {
+                            const Icon = feature.icon;
+
+                            return (
+                                <div
+                                    key={feature.title}
+                                    className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-lg shadow-black/20 transition hover:-translate-y-1 hover:border-green-400/50"
+                                >
+                                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-500/10">
+                                        <Icon className="h-7 w-7 text-green-400" />
+                                    </div>
+
+                                    <h3 className="text-xl font-black text-white">
+                                        {feature.title}
+                                    </h3>
+
+                                    <p className="mt-3 text-sm leading-7 text-slate-400">
+                                        {feature.text}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </section>
+
+                <section id="memberships" className="mx-auto max-w-7xl px-6 pb-24">
+                    <div className="mb-10 max-w-2xl">
+                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
+                            Abonnementen
+                        </p>
+
+                        <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">
+                            Kies wat past bij jouw training
+                        </h2>
+
+                        <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
+                            Start eenvoudig en groei door wanneer je meer structuur,
+                            variatie en focus nodig hebt.
+                        </p>
+                    </div>
+
+                    <div className="mx-auto max-w-5xl">
+                        <div className="relative overflow-hidden rounded-[2rem] border border-green-400/20 bg-gradient-to-br from-green-500/10 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-black/40 md:p-10">
+                            <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-green-500/20 blur-3xl"></div>
+
+                            <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_320px] lg:items-center">
+                                <div>
+                                    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-green-400">
+                                        <BadgeCheck className="h-4 w-4" />
+                                        Fit-Pro Membership
+                                    </div>
+
+                                    <h3 className="text-4xl font-black leading-tight text-white sm:text-5xl">
+                                        Alles wat je nodig hebt
+                                        <span className="block text-green-400">
+                                            om sterker te worden.
+                                        </span>
+                                    </h3>
+
+                                    <p className="mt-6 max-w-2xl text-sm leading-8 text-slate-300 sm:text-base">
+                                        Krijg volledige toegang tot trainingsschema’s,
+                                        workouts, oefeningen, favorieten en jouw persoonlijke
+                                        fitnessdashboard.
+                                    </p>
+
+                                    <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                                        {[
+                                            'Volledige trainingsschema’s',
+                                            'Duidelijke workouts',
+                                            'Oefeningen per spiergroep',
+                                            'Persoonlijk dashboard',
+                                            'Favorieten opslaan',
+                                            'BMI overzicht',
+                                        ].map((feature) => (
+                                            <div
+                                                key={feature}
+                                                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 p-4"
+                                            >
+                                                <Check className="h-5 w-5 text-green-400" />
+
+                                                <span className="text-sm font-semibold text-slate-300">
+                                                    {feature}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="rounded-3xl border border-white/10 bg-black/30 p-6 shadow-xl shadow-black/30 backdrop-blur-xl">
+                                    <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
+                                        Membership
+                                    </p>
+
+                                    <div className="mt-5 flex items-end gap-2">
+                                        <span className="text-6xl font-black text-white">
+                                            €29
+                                        </span>
+
+                                        <span className="pb-3 text-sm text-slate-500">
+                                            / maand
+                                        </span>
+                                    </div>
+
+                                    <p className="mt-5 text-sm leading-7 text-slate-400">
+                                        Eén membership met volledige toegang tot alle functies
+                                        van Fit-Pro.
+                                    </p>
+
+                                    <Link
+                                        href="/register"
+                                        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-green-500 px-6 py-4 font-bold text-slate-950 transition hover:bg-green-400"
+                                    >
+                                        Word lid
+                                        <ArrowRight className="h-5 w-5" />
+                                    </Link>
+
+                                    <div className="mt-6 rounded-2xl border border-green-400/20 bg-green-500/10 p-4">
+                                        <div className="flex gap-3">
+                                            <ShieldCheck className="mt-0.5 h-5 w-5 text-green-400" />
+
+                                            <p className="text-sm leading-6 text-slate-300">
+                                                Toegang tot alle workouts, schema’s en oefeningen
+                                                binnen één duidelijke fitnessomgeving.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer className="border-t border-slate-800 px-6 py-8">
+                    <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+                        <p>© 2026 Fit-Pro. Alle rechten voorbehouden.</p>
+                        <p>Train slimmer. Word sterker.</p>
+                    </div>
                 </footer>
-            </div >
+            </main>
         </>
     );
 }

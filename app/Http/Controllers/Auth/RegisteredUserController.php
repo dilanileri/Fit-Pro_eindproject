@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        return redirect('/member');
+
+        return redirect('/member/membership/checkout');
     }
 }

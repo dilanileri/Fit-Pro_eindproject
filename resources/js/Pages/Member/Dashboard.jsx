@@ -138,7 +138,7 @@ export default function Dashboard({ favoritePlans = [] }) {
 
                         <div className="inline-flex rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2">
                             <p className="text-sm font-bold uppercase tracking-widest text-green-400">
-                                Actief
+                                {auth.user.membership_type || 'Basic'}
                             </p>
                         </div>
 

@@ -21,6 +21,7 @@ use App\Models\TrainingPlan;
     'address',
     'city',
     'membership_status',
+    'membership_type',
 ])]
 
 #[Hidden(['password', 'remember_token'])]

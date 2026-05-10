@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Member\MembershipController;
 use App\Http\Controllers\Admin\ExerciseController;
 use App\Http\Controllers\Admin\TrainingPlanController;
 use App\Http\Controllers\Member\TrainingPlanController as MemberTrainingPlanController;
@@ -87,6 +88,10 @@ Route::middleware(['auth'])
                 'favoritePlans' => $favoritePlans,
             ]);
         })->name('dashboard');
+
+        Route::get('/membership/checkout', [MembershipController::class, 'checkout']);
+        Route::post('/membership/checkout', [MembershipController::class, 'store']);
+        Route::get('/membership/success', [MembershipController::class, 'success']);
 
         Route::get('/profile', function () {
             return Inertia::render('Member/Profile');
