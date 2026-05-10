@@ -1,100 +1,180 @@
 import MemberLayout from '@/Layouts/MemberLayout';
-import { Link, router } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
+import {
+    ArrowLeft,
+    ArrowRight,
+    CalendarDays,
+    ClipboardList,
+    Dumbbell,
+    Flame,
+    Target,
+} from 'lucide-react';
 
-export default function Show({ trainingPlan, isFavorite }) {
+export default function Show({ trainingPlan }) {
     return (
         <MemberLayout>
-            <Link
-                href="/member/training-plans"
-                className="inline-block mb-6 text-sm text-slate-400 hover:text-green-400"
-            >
-                ← Terug naar trainingsschema's
-            </Link>
+            <section className="space-y-6 md:space-y-8">
+                <Link
+                    href="/member/training-plans"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition hover:text-green-400"
+                >
+                    <ArrowLeft className="h-4 w-4" />
+                    Terug naar trainingsschema&apos;s
+                </Link>
 
-            <div className="rounded-xl bg-slate-900 border border-slate-800 p-6 mb-8">
-                <h1 className="text-3xl font-bold mb-4">
-                    {trainingPlan.title}
-                </h1>
+                <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-black p-6 shadow-2xl shadow-black/40 md:p-8">
+                    <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-green-500/20 blur-3xl"></div>
+                    <div className="absolute -bottom-28 left-10 h-64 w-64 rounded-full bg-green-400/10 blur-3xl"></div>
 
-                {isFavorite ? (
-                    <button
-                        onClick={() =>
-                            router.delete(`/member/training-plans/${trainingPlan.id}/favorite`)
-                        }
-                        className="mb-4 rounded-lg bg-red-500 px-4 py-2 text-white font-semibold"
-                    >
-                        Verwijder favoriet
-                    </button>
-                ) : (
-                    <button
-                        onClick={() =>
-                            router.post(`/member/training-plans/${trainingPlan.id}/favorite`)
-                        }
-                        className="mb-4 rounded-lg bg-green-500 px-4 py-2 text-slate-950 font-semibold"
-                    >
-                        Toevoegen favoriet
-                    </button>
-                )}
+                    <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_320px] lg:items-center">
+                        <div>
+                            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-green-400">
+                                <ClipboardList className="h-4 w-4" />
+                                Trainingsschema
+                            </div>
 
-                <div className="space-y-2 text-slate-300">
-                    <p>
-                        <span className="text-slate-500">Doel:</span>{' '}
-                        {trainingPlan.goal}
-                    </p>
+                            <h1 className="max-w-3xl text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">
+                                {trainingPlan.title}
+                            </h1>
 
-                    <p>
-                        <span className="text-slate-500">Niveau:</span>{' '}
-                        {trainingPlan.difficulty}
-                    </p>
+                            <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+                                {trainingPlan.description ||
+                                    'Bekijk de gekoppelde workouts en volg dit schema stap voor stap.'}
+                            </p>
+                        </div>
 
-                    <p>
-                        <span className="text-slate-500">Duur:</span>{' '}
-                        {trainingPlan.duration_weeks} weken
-                    </p>
+                        <div className=" rounded-3xl border border-slate-800 bg-black/30 p-5 shadow-xl shadow-black/30 backdrop-blur md:p-6">
+                            <div className="mb-6 flex items-center gap-4">
+                                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-green-500/10">
+                                    <Dumbbell className="h-7 w-7 text-green-400" />
+                                </div>
 
-                    <p className="pt-2">
-                        {trainingPlan.description}
-                    </p>
+                                <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
+                                        Overzicht
+                                    </p>
+                                    <h2 className="text-xl font-bold text-white">
+                                        Schema info
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+                                    <div className="mb-2 flex items-center gap-2 text-slate-500">
+                                        <Target className="h-4 w-4" />
+                                        <span className="text-xs font-semibold uppercase">
+                                            Doel
+                                        </span>
+                                    </div>
+
+                                    <p className="font-bold text-white">
+                                        {trainingPlan.goal}
+                                    </p>
+                                </div>
+
+                                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                                    <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+                                        <div className="mb-2 flex items-center gap-2 text-slate-500">
+                                            <Flame className="h-4 w-4" />
+                                            <span className="text-xs font-semibold uppercase">
+                                                Niveau
+                                            </span>
+                                        </div>
+
+                                        <p className="font-bold text-green-400">
+                                            {trainingPlan.difficulty}
+                                        </p>
+                                    </div>
+
+                                    <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+                                        <div className="mb-2 flex items-center gap-2 text-slate-500">
+                                            <CalendarDays className="h-4 w-4" />
+                                            <span className="text-xs font-semibold uppercase">
+                                                Duur
+                                            </span>
+                                        </div>
+
+                                        <p className="font-bold text-white">
+                                            {trainingPlan.duration_weeks} weken
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <h2 className="text-2xl font-bold mb-6">
-                Workouts
-            </h2>
+                <div>
+                    <div className="mb-5 flex items-end justify-between gap-4">
+                        <div>
+                            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-green-400">
+                                Planning
+                            </p>
 
-            {trainingPlan.workouts.length === 0 ? (
-                <p className="text-slate-400">
-                    Er zijn nog geen workouts gekoppeld.
-                </p>
-            ) : (
-                <div className="space-y-6">
-                    {trainingPlan.workouts.map((workout, index) => (
-                        <div
-                            key={workout.id}
-                            className="rounded-xl bg-slate-900 border border-slate-800 p-6"
-                        >
-                            <h3 className="text-xl font-bold mb-2">
-                                {workout.pivot?.day_name || `Dag ${index + 1}`} - {workout.title}
+                            <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
+                                Workouts in dit schema
+                            </h2>
+                        </div>
+                    </div>
+
+                    {trainingPlan.workouts.length === 0 ? (
+                        <div className="rounded-3xl border border-dashed border-slate-700 bg-slate-900/70 p-8 text-center">
+                            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-green-500/10">
+                                <Dumbbell className="h-8 w-8 text-green-400" />
+                            </div>
+
+                            <h3 className="text-xl font-bold text-white">
+                                Geen workouts gekoppeld
                             </h3>
 
-                            <p className="text-slate-400 mb-1">
-                                Moeilijkheid: {workout.difficulty}
+                            <p className="mt-3 text-sm text-slate-400">
+                                Dit schema bevat momenteel nog geen workouts.
                             </p>
-
-                            <p className="text-slate-400 mb-4">
-                                Duur: {workout.duration_minutes} minuten
-                            </p>
-
-                            <Link
-                                href={`/member/workouts/${workout.id}`}
-                                className="inline-block mt-4 rounded-lg bg-green-500 px-4 py-2 text-slate-950 font-semibold"
-                            >
-                                Bekijk workout
-                            </Link>
                         </div>
-                    ))}
+                    ) : (
+                        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                            {trainingPlan.workouts.map((workout, index) => (
+                                <Link
+                                    key={workout.id}
+                                    href={`/member/workouts/${workout.id}`}
+                                    className="group flex min-h-[230px] flex-col justify-between rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-5 shadow-lg shadow-black/20 transition hover:-translate-y-1 hover:border-green-400/60 md:p-6"
+                                >
+                                    <div>
+                                        <div className="mb-5 flex items-start justify-between gap-4">
+                                            <div className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-green-500/10 p-3">
+                                                <Dumbbell className="h-6 w-6 text-green-400" />
+                                            </div>
+
+                                            <span className="rounded-full border border-green-400/20 bg-green-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-green-400">
+                                                {workout.pivot?.day_name ||
+                                                    `Dag ${index + 1}`}
+                                            </span>
+                                        </div>
+
+                                        <h3 className="text-xl font-black text-white">
+                                            {workout.title}
+                                        </h3>
+
+                                        <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-400">
+                                            {workout.description ||
+                                                'Bekijk de oefeningen, sets, reps en rusttijd voor deze workout.'}
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-6 flex items-center justify-between border-t border-slate-800 pt-5">
+                                        <span className="text-sm font-semibold text-slate-400">
+                                            Bekijk workout
+                                        </span>
+
+                                        <ArrowRight className="h-5 w-5 text-slate-600 transition group-hover:translate-x-1 group-hover:text-green-400" />
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
-            )}
+            </section>
         </MemberLayout>
     );
 }
