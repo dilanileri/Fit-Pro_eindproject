@@ -20,8 +20,8 @@ export default function Success() {
                     </h1>
 
                     <p className="mt-5 text-sm leading-7 text-slate-400 sm:text-base">
-                        Je hebt nu volledige toegang tot Fit-Pro. Je kan meteen
-                        je dashboard openen en starten met je trainingsschema’s.
+                        Je betaling is gelukt, log in om toegang te krijgen tot
+                        je persoonlijke dashboard en trainingsschema's
                     </p>
 
                     <div className="mt-8 rounded-2xl border border-slate-800 bg-black/25 p-5">
@@ -34,10 +34,11 @@ export default function Success() {
                     </div>
 
                     <Link
-                        href="/member"
+                        href="/member/membership/logout-to-login"
+                        method="post"
                         className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-green-500 px-7 py-4 font-bold text-slate-950 transition hover:bg-green-400 sm:w-auto"
                     >
-                        Naar dashboard
+                        Ga verder naar inloggen
                         <ArrowRight className="h-5 w-5" />
                     </Link>
                 </div>

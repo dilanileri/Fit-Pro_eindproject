@@ -105,7 +105,7 @@ export default function Profile() {
                                         </p>
 
                                         <p className="font-bold text-green-400">
-                                            Actief
+                                            {auth.user.membership_type || 'Geen actief membership'}
                                         </p>
                                     </div>
                                 </div>

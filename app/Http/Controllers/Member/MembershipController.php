@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class MembershipController extends Controller
@@ -23,9 +24,17 @@ class MembershipController extends Controller
         $request->user()->update([
             'membership_type' => 'Fit-Pro Membership',
         ]);
-        return redirect('/member/Membership/Success');
+        return redirect('/member/membership/success');
     }
+    public function logoutToLogin(Request $request)
+    {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    }
     public function success()
     {
         return Inertia::render('Member/Membership/Success');

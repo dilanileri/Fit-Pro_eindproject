@@ -92,6 +92,8 @@ Route::middleware(['auth'])
         Route::get('/membership/checkout', [MembershipController::class, 'checkout']);
         Route::post('/membership/checkout', [MembershipController::class, 'store']);
         Route::get('/membership/success', [MembershipController::class, 'success']);
+        Route::post('/membership/logout-to-login', [MembershipController::class, 'logoutToLogin']);
+
 
         Route::get('/profile', function () {
             return Inertia::render('Member/Profile');

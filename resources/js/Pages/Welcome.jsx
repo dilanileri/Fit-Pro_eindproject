@@ -49,7 +49,7 @@ export default function Welcome({ auth }) {
                                         href="/register"
                                         className="rounded-xl bg-green-500 px-5 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-green-400"
                                     >
-                                        Start nu
+                                        Word lid
                                     </Link>
                                 </>
                             )}
@@ -98,7 +98,7 @@ export default function Welcome({ auth }) {
                                     href="#memberships"
                                     className="inline-flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur transition hover:border-green-400 hover:text-green-400 sm:w-auto"
                                 >
-                                    Bekijk abonnementen
+                                    Bekijk membership
                                 </a>
                             </div>
                         </div>
@@ -209,16 +209,15 @@ export default function Welcome({ auth }) {
                 <section id="memberships" className="mx-auto max-w-7xl px-6 pb-24">
                     <div className="mb-10 max-w-2xl">
                         <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
-                            Abonnementen
+                            Membership
                         </p>
 
                         <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">
-                            Kies wat past bij jouw training
+                            Eén membership. Volledige toegang.
                         </h2>
 
                         <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
-                            Start eenvoudig en groei door wanneer je meer structuur,
-                            variatie en focus nodig hebt.
+                            Geen keuzestress of ingewikkelde pakketten. Met één membership krijg je toegang tot alles binnen Fit-Pro.
                         </p>
                     </div>
 

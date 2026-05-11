@@ -137,14 +137,15 @@ export default function Dashboard({ favoritePlans = [] }) {
                         </div>
 
                         <div className="inline-flex rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2">
-                            <p className="text-sm font-bold uppercase tracking-widest text-green-400">
-                                {auth.user.membership_type || 'Basic'}
+                            <p className="text-xs font-bold uppercase tracking-widest text-green-400 sm:text-sm">
+                                {auth.user.membership_type || 'Geen actief membership'}
                             </p>
                         </div>
 
                         <p className="mt-5 text-sm leading-7 text-slate-400">
-                            Je hebt toegang tot alle trainingsschema&apos;s,
-                            workouts en oefeningen binnen Fit-Pro.
+                            {auth.user.membership_type
+                                ? 'Je hebt momenteel toegang via je Fit-Pro membership.'
+                                : 'Je hebt momenteel geen actief membership.'}
                         </p>
                     </div>
 
@@ -216,7 +217,7 @@ export default function Dashboard({ favoritePlans = [] }) {
                             <div>
                                 <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-slate-800 px-3 py-1 text-xs font-semibold text-slate-300">
                                     <Activity className="h-3 w-3 text-green-400" />
-                                    Training library
+                                    Trainingsbibliotheek
                                 </div>
 
                                 <h2 className="text-2xl font-black text-white sm:text-3xl">

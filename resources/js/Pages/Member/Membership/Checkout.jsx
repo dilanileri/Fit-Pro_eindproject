@@ -1,7 +1,6 @@
 import CheckoutLayout from '@/Layouts/CheckoutLayout';
 import { useForm } from '@inertiajs/react';
 import {
-    ArrowLeft,
     BadgeCheck,
     Check,
     CreditCard,
@@ -98,6 +97,7 @@ export default function Checkout() {
 
                                 <input
                                     type="text"
+                                    inputMode="numeric"
                                     value={data.card_number}
                                     onChange={(e) =>
                                         setData('card_number', e.target.value)
