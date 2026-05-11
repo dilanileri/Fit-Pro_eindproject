@@ -38,7 +38,7 @@ export default function AdminLayout({ children }) {
     ];
 
     return (
-        <div className="min-h-screen bg-slate-950 text-slate-100">
+        <div className="min-h-screen select-none bg-slate-950 text-slate-100">
             <aside className="border-b border-slate-800 bg-slate-900/95 px-4 py-4 md:fixed md:left-0 md:top-0 md:h-screen md:w-72 md:border-b-0 md:border-r md:px-6">
                 <Link href="/admin" className="mb-5 flex items-center md:mb-8">
                     <img
