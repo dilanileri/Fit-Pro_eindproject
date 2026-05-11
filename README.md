@@ -14,3 +14,7 @@ Fitness webapplicatie voor een sportschool.
 - Profielpagina met BMI berekening
 - Abonnementensysteem
 - Adminbeheer voor trainingsschema’s en oefeningen
+
+## Live Preview
+
+🔗 https://eindwerk.dilandesign.be/
