@@ -70,9 +70,9 @@ export default function Show({ exercise }) {
                     </div>
 
                     <div className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl shadow-black/40">
-                        {exercise.image_path ? (
+                        {exercise.image ? (
                             <img
-                                src={exercise.image_path}
+                                src={exercise.image}
                                 alt={exercise.name}
                                 className="h-full min-h-[320px] w-full object-cover"
                             />
