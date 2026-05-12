@@ -71,7 +71,7 @@ export default function Dashboard({ stats }) {
                         return (
                             <div
                                 key={card.label}
-                                className="rounded-3xl border border-slate-800 bg-slate-900 p-5 shadow-lg shadow-black/10 md:p-6"
+                                className="rounded-3xl border border-slate-800 bg-slate-900 p-5 shadow-lg shadow-black/10 md:p-6 transition hover:-translate-y-1 hover:border-sky-400/40"
                             >
                                 <div className="mb-6 flex items-center justify-between gap-4">
                                     <div>

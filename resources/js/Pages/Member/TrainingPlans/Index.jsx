@@ -13,7 +13,16 @@ export default function Index({ trainingPlans }) {
     return (
         <MemberLayout>
             <section className="space-y-8">
-                <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-black p-6 shadow-2xl shadow-black/40 md:p-8">
+                <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-6 shadow-2xl shadow-black/40 md:p-8">
+                    <img
+                        src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438"
+                        alt="Fitness training"
+                        className="absolute inset-0 h-full w-full object-cover"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/95 to-slate-950/60"></div>
+                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
                     <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-green-500/20 blur-3xl"></div>
 
                     <div className="relative z-10 max-w-3xl">
@@ -62,7 +71,7 @@ export default function Index({ trainingPlans }) {
                                             <Dumbbell className="h-7 w-7 text-green-400" />
                                         </div>
 
-                                        <div className="rounded-full border border-slate-700 bg-black/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                                        <div className="rounded-full border border-sky-400 bg-black/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-400">
                                             {plan.difficulty}
                                         </div>
                                     </div>

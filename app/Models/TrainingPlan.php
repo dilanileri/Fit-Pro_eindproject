@@ -20,6 +20,7 @@ class TrainingPlan extends Model
         'goal',
         'difficulty',
         'duration_weeks',
+        'image',
     ];
     public function favoritedByUsers()
     {

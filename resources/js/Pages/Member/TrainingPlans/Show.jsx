@@ -1,4 +1,5 @@
 import MemberLayout from '@/Layouts/MemberLayout';
+import FavoriteButton from '@/Components/MemberComponents/FavoriteButton';
 import { Link } from '@inertiajs/react';
 import {
     ArrowLeft,
@@ -9,8 +10,9 @@ import {
     Flame,
     Target,
 } from 'lucide-react';
+import BottomNavigation from '@/Components/MemberComponents/BottomNavigation';
 
-export default function Show({ trainingPlan }) {
+export default function Show({ trainingPlan, isFavorite }) {
     return (
         <MemberLayout>
             <section className="space-y-6 md:space-y-8">
@@ -23,6 +25,17 @@ export default function Show({ trainingPlan }) {
                 </Link>
 
                 <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-black p-6 shadow-2xl shadow-black/40 md:p-8">
+                    {trainingPlan.image && (
+                        <img
+                            src={trainingPlan.image}
+                            alt={trainingPlan.title}
+                            className="absolute inset-0 h-full w-full object-cover"
+                        />
+                    )}
+                    {/* <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/95 to-slate-950/60"></div> */}
+                    <div className="absolute inset-0 bg-black/60"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+
                     <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-green-500/20 blur-3xl"></div>
                     <div className="absolute -bottom-28 left-10 h-64 w-64 rounded-full bg-green-400/10 blur-3xl"></div>
 
@@ -32,6 +45,15 @@ export default function Show({ trainingPlan }) {
                                 <ClipboardList className="h-4 w-4" />
                                 Trainingsschema
                             </div>
+
+
+
+                            <FavoriteButton
+                                isFavorite={isFavorite}
+                                trainingPlanId={trainingPlan.id}
+                                className="absolute left-1 top-1 z-20"
+                            />
+
 
                             <h1 className="max-w-3xl text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">
                                 {trainingPlan.title}
@@ -95,7 +117,7 @@ export default function Show({ trainingPlan }) {
                                             </span>
                                         </div>
 
-                                        <p className="font-bold text-white">
+                                        <p className="font-bold text-sky-400">
                                             {trainingPlan.duration_weeks}
                                         </p>
                                     </div>
@@ -108,7 +130,7 @@ export default function Show({ trainingPlan }) {
                 <div>
                     <div className="mb-5 flex items-end justify-between gap-4">
                         <div>
-                            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-green-400">
+                            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-sky-400">
                                 Planning
                             </p>
 
@@ -146,7 +168,7 @@ export default function Show({ trainingPlan }) {
                                                 <Dumbbell className="h-6 w-6 text-green-400" />
                                             </div>
 
-                                            <span className="rounded-full border border-green-400/20 bg-green-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-green-400">
+                                            <span className="rounded-full border border-sky-400/20 bg-sky-600/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sky-400">
                                                 {workout.pivot?.day_name ||
                                                     `Dag ${index + 1}`}
                                             </span>
@@ -174,6 +196,7 @@ export default function Show({ trainingPlan }) {
                         </div>
                     )}
                 </div>
+                <BottomNavigation />
             </section>
         </MemberLayout>
     );

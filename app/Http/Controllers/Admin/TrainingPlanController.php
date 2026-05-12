@@ -32,6 +32,7 @@ class TrainingPlanController extends Controller
             'goal' => 'required|string|max:255',
             'difficulty' => 'required|string|max:255',
             'duration_weeks' => 'nullable|string',
+            'image' => 'nullable|string',
             'workouts' => 'array',
             'workouts.*.id' => 'required|exists:workouts,id',
             'workouts.*.day_name' => 'nullable|string|max:50',
@@ -42,6 +43,7 @@ class TrainingPlanController extends Controller
             'goal' => $validated['goal'],
             'difficulty' => $validated['difficulty'],
             'duration_weeks' => $validated['duration_weeks'] ?? null,
+            'image' => $validated['image'] ?? null,
         ]);
 
         $syncData = [];
@@ -80,6 +82,7 @@ class TrainingPlanController extends Controller
             'goal' => 'required|string|max:255',
             'difficulty' => 'required|string|max:255',
             'duration_weeks' => 'nullable|string',
+            'image' => 'nullable|string',
 
             'workouts' => 'array',
             'workouts.*.id' => 'required|exists:workouts,id',

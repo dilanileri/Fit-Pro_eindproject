@@ -18,6 +18,7 @@ export default function Edit({ plan, workouts }) {
         description: plan.description || '',
         goal: plan.goal || '',
         difficulty: plan.difficulty || '',
+        image: plan.image || '',
         duration_weeks: plan.duration_weeks || '',
         workouts: plan.workouts.map((workout) => ({
             id: workout.id,
@@ -241,6 +242,32 @@ export default function Edit({ plan, workouts }) {
                                             className={inputClass}
                                             placeholder="Bijv. 8"
                                         />
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label className="mb-2 block text-sm font-semibold text-slate-300">
+                                            Workout afbeelding
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            value={data.image}
+                                            onChange={(e) =>
+                                                setData(
+                                                    'image',
+                                                    e.target.value
+                                                )
+                                            }
+                                            placeholder="https://example.com/workout.jpg"
+                                            className={inputClass}
+                                        />
+
+                                        {data.image && (
+                                            <img
+                                                src={data.image}
+                                                alt="Workout preview"
+                                                className="mt-4 h-56 w-full rounded-3xl object-cover"
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             </div>

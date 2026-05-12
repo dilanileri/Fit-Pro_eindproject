@@ -1,6 +1,6 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Link, useForm } from '@inertiajs/react';
-import { ArrowLeft, Dumbbell, Plus } from 'lucide-react';
+import { ArrowLeft, Dumbbell, Save } from 'lucide-react';
 
 export default function Create() {
     const { data, setData, post, processing, errors } = useForm({
@@ -158,7 +158,15 @@ export default function Create() {
                                     className={inputClass}
                                     placeholder="https://..."
                                 />
+                                {data.image && (
+                                    <img
+                                        src={data.image}
+                                        alt="Workout preview"
+                                        className="mt-4 h-56 w-full rounded-3xl object-cover"
+                                    />
+                                )}
                             </div>
+
 
                             <div>
                                 <label className="mb-2 block text-sm font-semibold text-slate-400">
@@ -187,7 +195,7 @@ export default function Create() {
                                 disabled={processing}
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-green-500 px-6 py-4 font-bold text-slate-950 shadow-lg shadow-green-500/20 transition hover:-translate-y-0.5 hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                             >
-                                <Plus className="h-5 w-5" />
+                                <Save className="h-5 w-5" />
 
                                 {processing
                                     ? 'Opslaan...'

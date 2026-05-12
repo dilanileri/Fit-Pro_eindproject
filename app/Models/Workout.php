@@ -27,5 +27,6 @@ class Workout extends Model
         'description',
         'difficulty',
         'duration_minutes',
+        'image'
     ];
 }

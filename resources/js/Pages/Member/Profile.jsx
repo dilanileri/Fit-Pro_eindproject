@@ -82,8 +82,8 @@ export default function Profile() {
                     <aside className="space-y-6">
                         <div className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-lg shadow-black/20">
                             <div className="mb-6 flex items-center gap-4">
-                                <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-green-500/10">
-                                    <User className="h-8 w-8 text-green-400" />
+                                <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-sky-500/10">
+                                    <User className="h-8 w-8 text-sky-400" />
                                 </div>
 
                                 <div>
@@ -130,14 +130,14 @@ export default function Profile() {
                                         Ingevuld
                                     </span>
 
-                                    <span className="font-bold text-green-400">
+                                    <span className="font-bold text-sky-400">
                                         {completionPercentage}%
                                     </span>
                                 </div>
 
                                 <div className="h-3 overflow-hidden rounded-full bg-slate-800">
                                     <div
-                                        className="h-full rounded-full bg-green-500"
+                                        className="h-full rounded-full bg-sky-500"
                                         style={{
                                             width: `${completionPercentage}%`,
                                         }}

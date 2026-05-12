@@ -207,6 +207,13 @@ export default function Edit({ exercise }) {
                                     className={inputClass}
                                     placeholder="https://..."
                                 />
+                                {data.image && (
+                                    <img
+                                        src={data.image}
+                                        alt="Workout preview"
+                                        className="mt-4 h-56 w-full rounded-3xl object-cover"
+                                    />
+                                )}
                             </div>
 
                             <div>
@@ -236,14 +243,14 @@ export default function Edit({ exercise }) {
                                         Oefening compleetheid
                                     </span>
 
-                                    <span className="ml-2 font-bold text-green-400">
+                                    <span className="ml-2 font-bold text-sky-400">
                                         {completionPercentage}%
                                     </span>
                                 </div>
 
                                 <div className="h-3 overflow-hidden rounded-full bg-slate-800">
                                     <div
-                                        className="h-full rounded-full bg-green-500 transition-all duration-300"
+                                        className="h-full rounded-full bg-sky-500 transition-all duration-300"
                                         style={{
                                             width: `${completionPercentage}%`,
                                         }}

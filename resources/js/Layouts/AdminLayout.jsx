@@ -64,7 +64,7 @@ export default function AdminLayout({ children }) {
                                 key={link.href}
                                 href={link.href}
                                 className={`flex shrink-0 items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition ${link.active
-                                    ? 'bg-green-500/10 text-green-400'
+                                    ? 'bg-sky-500/10 text-sky-400'
                                     : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                                     }`}
                             >

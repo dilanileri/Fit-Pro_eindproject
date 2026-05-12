@@ -1,4 +1,5 @@
 import { Link, Head } from '@inertiajs/react';
+import FooterLayout from '@/Layouts/FooterLayout';
 import {
     ArrowRight,
     BadgeCheck,
@@ -67,10 +68,10 @@ export default function Welcome({ auth }) {
 
                     <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 px-6 pt-28 lg:grid-cols-[1fr_360px] lg:items-center">
                         <div className="max-w-3xl">
-                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-green-400">
+                            {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-green-400">
                                 <Flame className="h-4 w-4" />
                                 Premium fitness ervaring
-                            </div>
+                            </div> */}
 
                             <h1 className="text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
                                 Train slimmer.
@@ -96,7 +97,7 @@ export default function Welcome({ auth }) {
 
                                 <a
                                     href="#memberships"
-                                    className="inline-flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur transition hover:border-green-400 hover:text-green-400 sm:w-auto"
+                                    className="inline-flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur transition hover:border-sky-400 hover:text-sky-400 sm:w-auto"
                                 >
                                     Bekijk membership
                                 </a>
@@ -134,7 +135,7 @@ export default function Welcome({ auth }) {
 
                 <section className="mx-auto max-w-7xl px-6 py-24">
                     <div className="max-w-2xl">
-                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
+                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
                             Waarom Fit-Pro
                         </p>
 
@@ -208,7 +209,7 @@ export default function Welcome({ auth }) {
 
                 <section id="memberships" className="mx-auto max-w-7xl px-6 pb-24">
                     <div className="mb-10 max-w-2xl">
-                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
+                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
                             Membership
                         </p>
 
@@ -269,13 +270,13 @@ export default function Welcome({ auth }) {
                                 </div>
 
                                 <div className="rounded-3xl border border-white/10 bg-black/30 p-6 shadow-xl shadow-black/30 backdrop-blur-xl">
-                                    <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
+                                    <p className="text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
                                         Membership
                                     </p>
 
                                     <div className="mt-5 flex items-end gap-2">
                                         <span className="text-6xl font-black text-white">
-                                            €29
+                                            €4,99
                                         </span>
 
                                         <span className="pb-3 text-sm text-slate-500">
@@ -311,12 +312,7 @@ export default function Welcome({ auth }) {
                         </div>
                     </div>
                 </section>
-                <footer className="border-t border-slate-800 px-6 py-8">
-                    <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-                        <p>© 2026 Fit-Pro. Alle rechten voorbehouden.</p>
-                        <p>Train slimmer. Word sterker.</p>
-                    </div>
-                </footer>
+                <FooterLayout />
             </main>
         </>
     );

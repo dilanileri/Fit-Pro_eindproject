@@ -16,6 +16,7 @@ export default function Edit({ workout, exercises }) {
         title: workout.title || '',
         description: workout.description || '',
         difficulty: workout.difficulty || '',
+        image: workout.image || '',
         duration_minutes: workout.duration_minutes || '',
         exercises: workout.exercises.map((exercise) => ({
             id: exercise.id,
@@ -63,7 +64,6 @@ export default function Edit({ workout, exercises }) {
 
     function submit(e) {
         e.preventDefault();
-
         put(`/admin/workouts/${workout.id}`);
     }
 
@@ -218,6 +218,33 @@ export default function Edit({ workout, exercises }) {
                                             placeholder="Bijv. 45"
                                         />
                                     </div>
+
+                                    <div className="md:col-span-2">
+                                        <label className="mb-2 block text-sm font-semibold text-slate-300">
+                                            Workout afbeelding
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            value={data.image}
+                                            onChange={(e) =>
+                                                setData(
+                                                    'image',
+                                                    e.target.value
+                                                )
+                                            }
+                                            placeholder="https://example.com/workout.jpg"
+                                            className={inputClass}
+                                        />
+
+                                        {data.image && (
+                                            <img
+                                                src={data.image}
+                                                alt="Workout preview"
+                                                className="mt-4 h-56 w-full rounded-3xl object-cover"
+                                            />
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,13 +305,14 @@ export default function Edit({ workout, exercises }) {
                                             <div
                                                 key={exercise.id}
                                                 className={`rounded-3xl border p-4 transition duration-200 ${selectedExercise
-                                                    ? 'border-green-400/40 bg-green-500/5'
-                                                    : 'border-slate-800 bg-black/20 hover:border-slate-700'
+                                                        ? 'border-green-400/40 bg-green-500/5'
+                                                        : 'border-slate-800 bg-black/20 hover:border-slate-700'
                                                     }`}
                                             >
                                                 <label className="flex cursor-pointer items-start gap-4">
                                                     <input
-                                                        className="mt-1 h-5 w-5 rounded-md border border-slate-600 bg-slate-900 text-green-500 focus:ring-2 focus:ring-green-400/30" type="checkbox"
+                                                        className="mt-1 h-5 w-5 rounded-md border border-slate-600 bg-slate-900 text-green-500 focus:ring-2 focus:ring-green-400/30"
+                                                        type="checkbox"
                                                         value={exercise.id}
                                                         checked={
                                                             !!selectedExercise
@@ -347,7 +375,9 @@ export default function Edit({ workout, exercises }) {
                                                                             .value
                                                                     )
                                                                 }
-                                                                className={inputClass}
+                                                                className={
+                                                                    inputClass
+                                                                }
                                                             />
                                                         </div>
 
@@ -370,7 +400,9 @@ export default function Edit({ workout, exercises }) {
                                                                             .value
                                                                     )
                                                                 }
-                                                                className={inputClass}
+                                                                className={
+                                                                    inputClass
+                                                                }
                                                             />
                                                         </div>
 
@@ -393,7 +425,9 @@ export default function Edit({ workout, exercises }) {
                                                                             .value
                                                                     )
                                                                 }
-                                                                className={inputClass}
+                                                                className={
+                                                                    inputClass
+                                                                }
                                                             />
                                                         </div>
                                                     </div>

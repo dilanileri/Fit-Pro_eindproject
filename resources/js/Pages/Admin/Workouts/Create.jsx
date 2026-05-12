@@ -16,12 +16,12 @@ export default function Create({ exercises }) {
         description: '',
         difficulty: '',
         duration_minutes: '',
+        image: '',
         exercises: [],
     });
 
     function submit(e) {
         e.preventDefault();
-
         post('/admin/workouts');
     }
 
@@ -66,7 +66,7 @@ export default function Create({ exercises }) {
 
                     <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-500/10 text-sky-400 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-green-400">
+                            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
                                 <Activity className="h-4 w-4" />
                                 Workouts
                             </div>
@@ -198,6 +198,33 @@ export default function Create({ exercises }) {
                                             placeholder="Bijv. 45"
                                         />
                                     </div>
+
+                                    <div className="md:col-span-2">
+                                        <label className="mb-2 block text-sm font-semibold text-slate-300">
+                                            Workout afbeelding
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            value={data.image}
+                                            onChange={(e) =>
+                                                setData(
+                                                    'image',
+                                                    e.target.value
+                                                )
+                                            }
+                                            placeholder="https://example.com/workout.jpg"
+                                            className={inputClass}
+                                        />
+
+                                        {data.image && (
+                                            <img
+                                                src={data.image}
+                                                alt="Workout preview"
+                                                className="mt-4 h-56 w-full rounded-3xl object-cover"
+                                            />
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -257,8 +284,8 @@ export default function Create({ exercises }) {
                                             <div
                                                 key={exercise.id}
                                                 className={`rounded-3xl border p-4 transition duration-200 ${selectedExercise
-                                                    ? 'border-green-400/40 bg-green-500/5'
-                                                    : 'border-slate-800 bg-black/20 hover:border-slate-700'
+                                                        ? 'border-green-400/40 bg-green-500/5'
+                                                        : 'border-slate-800 bg-black/20 hover:border-slate-700'
                                                     }`}
                                             >
                                                 <label className="flex cursor-pointer items-start gap-4">
@@ -327,7 +354,9 @@ export default function Create({ exercises }) {
                                                                             .value
                                                                     )
                                                                 }
-                                                                className={inputClass}
+                                                                className={
+                                                                    inputClass
+                                                                }
                                                             />
                                                         </div>
 
@@ -350,7 +379,9 @@ export default function Create({ exercises }) {
                                                                             .value
                                                                     )
                                                                 }
-                                                                className={inputClass}
+                                                                className={
+                                                                    inputClass
+                                                                }
                                                             />
                                                         </div>
 
@@ -373,7 +404,9 @@ export default function Create({ exercises }) {
                                                                             .value
                                                                     )
                                                                 }
-                                                                className={inputClass}
+                                                                className={
+                                                                    inputClass
+                                                                }
                                                             />
                                                         </div>
                                                     </div>

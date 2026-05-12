@@ -31,6 +31,7 @@ class WorkoutController extends Controller
             'description' => 'nullable|string',
             'difficulty' => 'required|string|max:255',
             'duration_minutes' => 'nullable|integer',
+            'image' => 'nullable|string|max:255',
 
             'exercises' => 'array',
             'exercises.*.id' => 'required|exists:exercises,id',
@@ -44,6 +45,7 @@ class WorkoutController extends Controller
             'description' => $validated['description'] ?? null,
             'difficulty' => $validated['difficulty'],
             'duration_minutes' => $validated['duration_minutes'] ?? null,
+            'image' => $validated['image'] ?? null,
         ]);
 
         $syncData = [];
@@ -82,6 +84,7 @@ class WorkoutController extends Controller
             'description' => 'nullable|string',
             'difficulty' => 'required|string|max:255',
             'duration_minutes' => 'nullable|integer',
+            'image' => 'nullable|string|max:255',
             'exercises' => 'array',
             'exercises.*.id' => 'required|exists:exercises,id',
             'exercises.*.sets' => 'nullable|integer|min:1',
@@ -93,6 +96,8 @@ class WorkoutController extends Controller
             'description' => $validated['description'] ?? null,
             'difficulty' => $validated['difficulty'],
             'duration_minutes' => $validated['duration_minutes'] ?? null,
+            'image' => $validated['image'] ?? null,
+
         ]);
 
         $syncData = [];

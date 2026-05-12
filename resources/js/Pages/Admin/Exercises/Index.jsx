@@ -57,7 +57,7 @@ export default function Index({ exercises }) {
                         {exercises.map((exercise) => (
                             <article
                                 key={exercise.id}
-                                className="overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 shadow-lg shadow-black/20"
+                                className="transition-all duration-300 hover:border-green-400/40 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/30 overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 shadow-lg shadow-black/20"
                             >
                                 {exercise.image && (
                                     <img
