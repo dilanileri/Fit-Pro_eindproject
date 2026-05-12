@@ -1,5 +1,5 @@
 import { Link, Head } from '@inertiajs/react';
-import FooterLayout from '@/Layouts/FooterLayout';
+import FooterLayout from '@/Layouts/FooterLayout.jsx';
 import {
     ArrowRight,
     BadgeCheck,
