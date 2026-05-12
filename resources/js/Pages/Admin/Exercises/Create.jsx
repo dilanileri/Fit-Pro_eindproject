@@ -29,7 +29,7 @@ export default function Create() {
 
                     <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-green-400">
+                            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
                                 <Dumbbell className="h-4 w-4" />
                                 Oefeningen
                             </div>

@@ -96,7 +96,7 @@ export default function Show({ trainingPlan }) {
                                         </div>
 
                                         <p className="font-bold text-white">
-                                            {trainingPlan.duration_weeks} weken
+                                            {trainingPlan.duration_weeks}
                                         </p>
                                     </div>
                                 </div>

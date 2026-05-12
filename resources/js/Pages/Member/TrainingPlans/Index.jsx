@@ -100,7 +100,7 @@ export default function Index({ trainingPlans }) {
                                             </div>
 
                                             <p className="text-sm font-bold text-white">
-                                                {plan.duration_weeks} weken
+                                                {plan.duration_weeks}
                                             </p>
                                         </div>
                                     </div>

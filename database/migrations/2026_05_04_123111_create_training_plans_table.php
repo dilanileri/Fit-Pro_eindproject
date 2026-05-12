@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('goal'); // spiermassa, afvallen
             $table->string('difficulty'); // beginner, advanced
-            $table->integer('duration_weeks')->nullable();
+            $table->string('duration_weeks')->nullable();
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Member\WorkoutController as MemberWorkoutController;
 use App\Http\Controllers\Member\ExerciseController as MemberExerciseController;
 use App\Models\TrainingPlan;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -46,13 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return Inertia::render('Admin/Dashboard', [
             'stats' => [
                 'exercises' => \App\Models\Exercise::count(),
                 'workouts' => \App\Models\Workout::count(),
                 'trainingPlans' => \App\Models\TrainingPlan::count(),
+                'users' => User::where('role', 'member')->count(),
             ],
         ]);
     })->name('dashboard');

@@ -6,6 +6,7 @@ import {
     ClipboardList,
     Dumbbell,
     LayoutDashboard,
+    Users,
 } from 'lucide-react';
 
 export default function Dashboard({ stats }) {
@@ -94,6 +95,23 @@ export default function Dashboard({ stats }) {
                             </div>
                         );
                     })}
+                </div>
+                <div className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-lg shadow-black/20 transition hover:-translate-y-1 hover:border-sky-400/40">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                                Members
+                            </p>
+
+                            <h2 className="mt-3 text-4xl font-black text-white">
+                                {stats.users}
+                            </h2>
+                        </div>
+
+                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-500/10">
+                            <Users className="h-7 w-7 text-sky-400" />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-lg shadow-black/20 md:p-8">

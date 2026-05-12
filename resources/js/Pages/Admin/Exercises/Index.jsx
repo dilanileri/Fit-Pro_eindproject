@@ -18,7 +18,7 @@ export default function Index({ exercises }) {
             <section className="space-y-6">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-400">
+                        <p className="text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
                             Beheer
                         </p>
 
