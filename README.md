@@ -8,6 +8,9 @@ Fit-Pro helpt sporters met het volgen van trainingsschema’s, workouts en oefen
 
 ## Features
 
+### Demo Betalingssysteem
+-registreren mogelijk!
+
 ### Member Functionaliteiten
 - Trainingsschema’s bekijken per doel
 - Workouts met gekoppelde oefeningen
