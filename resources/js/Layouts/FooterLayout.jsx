@@ -15,36 +15,6 @@ export default function FooterLayout() {
                     </p>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-500">
-                    <a
-                        href="/member/dashboard"
-                        className="transition hover:text-green-400"
-                    >
-                        Dashboard
-                    </a>
-
-                    <a
-                        href="/member/training-plans"
-                        className="transition hover:text-green-400"
-                    >
-                        Trainingsschema&apos;s
-                    </a>
-
-                    <a
-                        href="/member/workouts"
-                        className="transition hover:text-green-400"
-                    >
-                        Workouts
-                    </a>
-
-                    <a
-                        href="/member/exercises"
-                        className="transition hover:text-green-400"
-                    >
-                        Oefeningen
-                    </a>
-                </div>
-
                 <div className="text-sm text-slate-600 md:text-right">
                     <p>© 2026 Fit-Pro</p>
 

@@ -41,7 +41,7 @@ export default function Welcome({ auth }) {
                                 <>
                                     <Link
                                         href="/login"
-                                        className="hidden rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-300 transition hover:text-green-400 sm:inline-flex"
+                                        className="inline-flex items-center justify-center rounded-2xl  px-4 py-2 text-sm font-bold text-slate-300 transition hover:text-green-400"
                                     >
                                         Inloggen
                                     </Link>

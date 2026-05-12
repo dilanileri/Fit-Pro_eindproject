@@ -51,7 +51,7 @@ export default function Show({ trainingPlan, isFavorite }) {
                             <FavoriteButton
                                 isFavorite={isFavorite}
                                 trainingPlanId={trainingPlan.id}
-                                className="absolute left-1 top-1 z-20"
+                                className="absolute right-4 top-4 z-20"
                             />
 
 
