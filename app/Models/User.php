@@ -16,6 +16,7 @@ use App\Models\TrainingPlan;
     'email',
     'password',
     'age',
+    'gender',
     'height',
     'weight',
     'address',

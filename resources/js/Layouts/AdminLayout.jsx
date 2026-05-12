@@ -4,6 +4,7 @@ import {
     ClipboardList,
     Dumbbell,
     LayoutDashboard,
+    Users,
     LogOut,
 } from 'lucide-react';
 
@@ -34,6 +35,12 @@ export default function AdminLayout({ children }) {
             href: '/admin/training-plans',
             active: url.startsWith('/admin/training-plans'),
             icon: ClipboardList,
+        },
+        {
+            label: 'Ledenoverzicht',
+            href: '/admin/leden',
+            active: url.startsWith('/admin/leden'),
+            icon: Users,
         },
     ];
 

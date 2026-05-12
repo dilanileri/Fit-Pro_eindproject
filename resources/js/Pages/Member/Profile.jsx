@@ -21,6 +21,7 @@ export default function Profile() {
         recentlySuccessful,
     } = useForm({
         age: auth.user.age || '',
+        gender: auth.user.gender || '',
         height: auth.user.height || '',
         weight: auth.user.weight || '',
         address: auth.user.address || '',
@@ -37,6 +38,7 @@ export default function Profile() {
 
     const profileItems = [
         data.age,
+        data.gender,
         data.height,
         data.weight,
         data.city,
@@ -179,27 +181,49 @@ export default function Profile() {
                                     </p>
                                 )}
                             </div>
+                            <div>
+                                <label className="mb-2 block text-sm font-semibold text-slate-400">
+                                    Geslacht
+                                </label>
+
+                                <select
+                                    value={data.gender || ''}
+                                    onChange={(e) => setData('gender', e.target.value)}
+                                    className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-green-400 focus:ring-2 focus:ring-green-400/20"
+                                >
+                                    <option value="">Selecteer geslacht</option>
+                                    <option value="Man"> Man</option>
+                                    <option value="Vrouw">Vrouw</option>
+                                    <option value="Anders">Anders</option>
+                                </select>
+                            </div>
 
                             <div>
-                                <label className={labelClass}>Stad</label>
+                                <label className={labelClass}>
+                                    Gewicht in kg
+                                </label>
 
-                                <input
-                                    type="text"
-                                    value={data.city}
-                                    onChange={(e) =>
-                                        setData('city', e.target.value)
-                                    }
-                                    className={inputClass}
-                                    placeholder="Bijv. Hasselt"
-                                />
+                                <div className="relative">
+                                    <Scale className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-600" />
 
-                                {errors.city && (
+                                    <input
+                                        type="number"
+                                        step="0.1"
+                                        value={data.weight}
+                                        onChange={(e) =>
+                                            setData('weight', e.target.value)
+                                        }
+                                        className={`${inputClass} pl-11`}
+                                        placeholder="Bijv. 75.5"
+                                    />
+                                </div>
+
+                                {errors.weight && (
                                     <p className="mt-2 text-sm text-red-400">
-                                        Gebruik een correcte stadsnaam.
+                                        Vul een correct gewicht in kg in.
                                     </p>
                                 )}
                             </div>
-
                             <div>
                                 <label className={labelClass}>
                                     Lengte in cm
@@ -226,29 +250,23 @@ export default function Profile() {
                                 )}
                             </div>
 
+
                             <div>
-                                <label className={labelClass}>
-                                    Gewicht in kg
-                                </label>
+                                <label className={labelClass}>Stad</label>
 
-                                <div className="relative">
-                                    <Scale className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-600" />
+                                <input
+                                    type="text"
+                                    value={data.city}
+                                    onChange={(e) =>
+                                        setData('city', e.target.value)
+                                    }
+                                    className={inputClass}
+                                    placeholder="Bijv. Hasselt"
+                                />
 
-                                    <input
-                                        type="number"
-                                        step="0.1"
-                                        value={data.weight}
-                                        onChange={(e) =>
-                                            setData('weight', e.target.value)
-                                        }
-                                        className={`${inputClass} pl-11`}
-                                        placeholder="Bijv. 75.5"
-                                    />
-                                </div>
-
-                                {errors.weight && (
+                                {errors.city && (
                                     <p className="mt-2 text-sm text-red-400">
-                                        Vul een correct gewicht in kg in.
+                                        Gebruik een correcte stadsnaam.
                                     </p>
                                 )}
                             </div>

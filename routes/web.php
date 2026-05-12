@@ -59,6 +59,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         ]);
     })->name('dashboard');
 
+    Route::get('/leden', function () {
+        return Inertia::render('Admin/LedenOverzicht/Index', [
+            'members' => User::where('role', 'member')
+                ->latest()
+                ->get(),
+        ]);
+    })->name('members.index');
 
     Route::resource('exercises', ExerciseController::class);
     Route::resource('workouts', WorkoutController::class);
@@ -106,6 +113,7 @@ Route::middleware(['auth'])
                 'age' => ['nullable', 'integer', 'min:1', 'max:100'],
                 'height' => ['nullable', 'integer', 'min:100', 'max:230'],
                 'weight' => ['nullable', 'numeric', 'min:35', 'max:300'],
+                'gender' => ['nullable', 'string', 'max:50'],
                 'address' => ['nullable', 'string', 'min:3', 'max:255'],
                 'city' => ['nullable', 'string', 'min:3', 'max:255'],
             ]);

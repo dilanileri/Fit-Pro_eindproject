@@ -15,6 +15,7 @@ return new class extends Migration
             $table->integer('age')->nullable();
             $table->integer('height')->nullable();
             $table->decimal('weight', 5, 2)->nullable();
+            $table->string('gender')->nullable();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('membership_status')->default('active');
